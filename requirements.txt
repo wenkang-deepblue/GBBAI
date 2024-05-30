@@ -3,4 +3,4 @@ langchain==0.2.1
 langchain_google_vertexai==1.0.4
 protobuf==5.27.0
 Requests==2.32.3
-streamlit==1.34.0
+streamlit

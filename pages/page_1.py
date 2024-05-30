@@ -8,7 +8,7 @@ from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
 
 creds = service_account.Credentials.from_service_account_file(
-    "/Users/wenkangli/Desktop/RAG-Demo/lwk-genai-test-64a25b20a43f.json",
+    "/lwk-genai-test-64a25b20a43f.json",
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
 )
 auth_req = google.auth.transport.requests.Request()

@@ -146,13 +146,13 @@ with st.form("myform"):
         st.info("Please input prompt")
     
     if prompt and submitted and not uploaded_files:
-        prompt_without_article = f'If I ask you about "GBB", please answer directly: "GBB stands for "Go Beyond Blue."" If I did not ask you about "GBB", then you don't need to answer the above content or quote it. Please answer me directly based on the following "prompt".\n\n prompt: \n{prompt}\n\n answer：'
+        prompt_without_article = f'If I ask you about "GBB", please answer directly: "GBB stands for "Go Beyond Blue."" If I did not ask you about "GBB", then you do not need to answer the above content or quote it. Please answer me directly based on the following "prompt".\n\n prompt: \n{prompt}\n\n answer：'
         with st.spinner('A second please :coffee: you content is upcoming...'):
             generated_text = generate_text(prompt_without_article)
             st.write(generated_text)
             
     if prompt and submitted and uploaded_files:
-        prompt_with_article = f'If I ask you about "GBB", please answer directly: "GBB stands for "Go Beyond Blue."" If I did not ask you about "GBB", then you don't need to answer the above content or quote it. Please answer me directly based on the following "prompt".\n\n prompt: \n{prompt}\n\n answer：'
+        prompt_with_article = f'If I ask you about "GBB", please answer directly: "GBB stands for "Go Beyond Blue."" If I did not ask you about "GBB", then you do not need to answer the above content or quote it. Please answer me directly based on the following "prompt".\n\n prompt: \n{prompt}\n\n answer：'
         with st.spinner('A second please :coffee: you content is upcoming...'):
             generated_text = generate_text(prompt_with_article)
             st.write(generated_text)

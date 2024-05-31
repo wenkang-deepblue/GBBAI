@@ -39,7 +39,7 @@ with cent_co:
     st.subheader('', divider='rainbow')
 
 # Set the request body
-query = st.text_area("Please input your question:", "")  # Replace this with your actual query
+query = st.text_area("Please input your question:", "", placeholder="e.g. Is there a movie about robot?")  # Replace this with your actual query
 body = {
     "query": {"input": query},
     "summarySpec": {

@@ -20,6 +20,7 @@ auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
 vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
+storage_client = storage.Client(credentials=creds)
 
 model = GenerativeModel("gemini-1.5-flash-001")
 # Streamlit UI

@@ -7,6 +7,17 @@ import vertexai
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
 
+credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
+
+creds = service_account.Credentials.from_service_account_info(
+    credentials_info,
+    scopes=["https://www.googleapis.com/auth/cloud-platform"]
+)
+
+auth_req = google.auth.transport.requests.Request()
+creds.refresh(auth_req)
+
+vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
 
 # Streamlit UI
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])

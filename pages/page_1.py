@@ -6,6 +6,17 @@ import google.auth.transport.requests
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
+import os
+
+credentials_json = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+
+creds = service_account.Credentials.from_service_account_info(
+    credentials_json,
+    scopes=["https://www.googleapis.com/auth/cloud-platform"]
+)
+
+auth_req = google.auth.transport.requests.Request()
+creds.refresh(auth_req)
 
 # Streamlit UI
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])

@@ -164,12 +164,12 @@ with st.form("myform"):
     
     if prompt and translation_option and submitted and not uploaded_files:
         prompt_without_article = f"Please translate the following words into{translation_option},please output the translation result directly\n\n the words need to be translated: \n{prompt}\n\n answer："
-        with st.spinner('A second please :coffee: you content is upcoming...'):
+        with st.spinner('A second please :coffee: the content is upcoming...'):
             generated_text = generate_text(prompt_without_article)
             st.write(generated_text)
             
     if uploaded_files and translation_option and submitted and not prompt:
         prompt_with_article = f"Please translate the following words into{translation_option},please output the translation result directly\n\n the words need to be translated: \n{all_text}\n\n answer："
-        with st.spinner('A second please :coffee: you content is upcoming....'):
+        with st.spinner('A second please :coffee: the content is upcoming....'):
             generated_text = generate_text(prompt_with_article)
             st.write(generated_text)

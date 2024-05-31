@@ -39,7 +39,7 @@ with cent_co:
     st.subheader('', divider='rainbow')
 
 # Set the request body
-query = st.text_area("Please input your question:", "", placeholder="There are 3 movies in this database: Up, Wall-E and Harry Porter and the Philosopher's Stone, you can ask questions about these 3 movies, e.g. Is there a movie about robot?")
+query = st.text_area("Please input your question:", "", placeholder="There are 3 movies in this database: Up, Wall-E and Harry Porter and the Philosopher's Stone. You can ask questions about these 3 movies, e.g. is there a movie about robot?")
 body = {
     "query": {"input": query},
     "summarySpec": {

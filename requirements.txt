@@ -4,3 +4,7 @@ langchain_google_vertexai==1.0.4
 protobuf
 Requests==2.32.3
 streamlit
+google.auth
+google.oauth2
+google.auth.transport.requests
+requests

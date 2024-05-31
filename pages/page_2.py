@@ -7,7 +7,18 @@ from google.cloud import storage
 import os
 import tempfile
 
-vertexai.init(project="lwk-genai-test", location="us-central1")
+credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
+
+creds = service_account.Credentials.from_service_account_info(
+    credentials_info,
+    scopes=["https://www.googleapis.com/auth/cloud-platform"]
+)
+
+auth_req = google.auth.transport.requests.Request()
+creds.refresh(auth_req)
+
+vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
+
 model = GenerativeModel("gemini-1.5-flash-001")
 # Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])

@@ -6,6 +6,8 @@ import vertexai
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
 from google.cloud import storage
+import os
+import tempfile
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 

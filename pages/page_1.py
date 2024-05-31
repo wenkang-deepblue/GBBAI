@@ -11,10 +11,15 @@ import json
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
+temp_file_path = "temp_credentials.json"
+with open(temp_file_path, "w") as temp_file:
+    json.dump(credentials_info, temp_file)
+
 creds = service_account.Credentials.from_service_account_file(
-    credentials_info,
+    temp_file_path,
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
 )
+
 auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
@@ -155,3 +160,5 @@ with st.form("myform"):
         with st.spinner('A second please :coffee: you content is upcoming...'):
             generated_text = generate_text(prompt_with_article)
             st.write(generated_text)
+
+os.remove(temp_file_path)

@@ -10,7 +10,7 @@ st.set_page_config(
 st.image("https://storage.googleapis.com/ghackathon/galaxy%20banner%20with%20logo.png")
 
 
-st.write("# Hello!Welcome to :blue[GBB] :rainbow[AI] !")
+st.write("# Hello! Welcome to :blue[GBB] :rainbow[AI] !")
 
 
 st.markdown(

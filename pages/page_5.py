@@ -12,11 +12,9 @@ creds = service_account.Credentials.from_service_account_info(
     credentials_info,
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
 )
-
 auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
-vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
 # Set the base URL for the Discovery Engine API
 base_url = "https://discoveryengine.googleapis.com/v1alpha"
 

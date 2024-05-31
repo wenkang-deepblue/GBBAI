@@ -22,7 +22,7 @@ creds.refresh(auth_req)
 vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
 
 model = GenerativeModel("gemini-1.5-flash-001")
-# Streamlit 应用界面
+# Streamlit UI
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
 with cent_co:
     st.title(":blue[GBB] :rainbow[AI]")
@@ -34,7 +34,7 @@ left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
 
-#继续streamlit sidebar界面
+#continue streamlit sidebar UI
 with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:

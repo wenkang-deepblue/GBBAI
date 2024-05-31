@@ -11,7 +11,7 @@ import json
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
-credentials_dict = json.loads(credentials_info)
+credentials_dict = dict(credentials_info)
 
 creds = service_account.Credentials.from_service_account_info(
     credentials_dict,

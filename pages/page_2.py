@@ -200,6 +200,8 @@ if gcs_file:
         media_mime_type = "video/mp4"
     elif file_extension == "jpg":
         media_mime_type = "image/jpeg"
+    elif file_extension == "jpeg":
+        media_mime_type = "image/jpeg"
     elif file_extension == "png":
         media_mime_type = "image/png"
     elif file_extension == "gif":
@@ -210,6 +212,8 @@ elif file_type:
     if file_type == "mp4":
         media_mime_type = "video/mp4"
     elif file_type == "jpg":
+        media_mime_type = "image/jpeg"
+    elif file_type == "jpeg":
         media_mime_type = "image/jpeg"
     elif file_type == "png":
         media_mime_type = "image/png"

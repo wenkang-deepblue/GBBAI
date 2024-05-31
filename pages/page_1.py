@@ -11,14 +11,8 @@ import json
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
-credentials_info_1 = dict(credentials_info)
-
-temp_file_path = "temp_credentials.json"
-with open(temp_file_path, "w") as temp_file:
-    json.dump(credentials_info_1, temp_file)
-
-creds = service_account.Credentials.from_service_account_file(
-    temp_file_path,
+creds = service_account.Credentials.from_service_account_info(
+    credentials_info,
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
 )
 

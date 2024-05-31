@@ -79,7 +79,7 @@ with st.form("myform"):
     with cent_co:
         submitted = st.form_submit_button("Submit")
     if submitted:
-        with st.spinner('Your question is processing, answer is upcoming...'):
+        with st.spinner('Your question is being processed, the answer is upcoming...'):
             response = requests.post(endpoint_url, headers=headers, json=body)
             answer = response.json()
         

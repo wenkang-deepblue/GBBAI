@@ -11,11 +11,8 @@ import json
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
-credentials = dict(credentials_info)
-credentials["private_key"] = credentials["private_key"].replace("\\n", "\n")
-
 creds = service_account.Credentials.from_service_account_info(
-    credentials,
+    credentials_info,
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
 )
 

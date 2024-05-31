@@ -9,12 +9,7 @@ import vertexai.preview.generative_models as generative_models
 import os
 import json
 
-secret_str = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
-
-credentials_info = {}
-for line in secret_str.splitlines():
-    key, value = line.split(" = ", 1)
-    credentials_info[key.strip()] = value.strip().strip('"')
+credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
 creds = service_account.Credentials.from_service_account_info(
     credentials_info,

@@ -232,13 +232,13 @@ with st.form("myform"):
         st.info("Please input prompt")
     
     if not gcs_file and prompt and submitted:
-        with st.spinner('A second please :coffee: your content is upcoming...'):
+        with st.spinner('A second please :coffee: the content is upcoming...'):
             generated_text = generate_text(prompt)
             st.write(generated_text)
         
     if prompt and submitted and gcs_file:
         prompt_with_video = f"document content: \n{media}\n\n prompt: \n{prompt}\n\n answer："
-        with st.spinner('A second please :coffee: your content is upcoming...'):
+        with st.spinner('A second please :coffee: the content is upcoming...'):
             generated_video_text_text = generate_video_text(prompt_with_video)
             
             if file_extension in ("jpg", "png"):

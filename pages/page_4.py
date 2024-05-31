@@ -35,7 +35,7 @@ left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
 
-query = st.text_area("Please input your question:", "", placeholder = "e.g. Who is the CEO of Google?)
+query = st.text_area("Please input your question:", "", placeholder="e.g. Who is the CEO of Google?)
 body = {
     "query": {"input": query},
     "summarySpec": {

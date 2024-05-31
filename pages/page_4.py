@@ -5,8 +5,10 @@ from google.oauth2 import service_account
 import google.auth.transport.requests
 import json
 
-creds = service_account.Credentials.from_service_account_file(
-    "/Users/wenkangli/Desktop/RAG-Demo/lwk-genai-test-64a25b20a43f.json",
+credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
+
+creds = service_account.Credentials.from_service_account_info(
+    credentials_info,
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
 )
 auth_req = google.auth.transport.requests.Request()

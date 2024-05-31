@@ -7,8 +7,9 @@ import vertexai
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
 import os
+import json
 
-credentials_json = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+credentials_json = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
 creds = service_account.Credentials.from_service_account_info(
     credentials_json,

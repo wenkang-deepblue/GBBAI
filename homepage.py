@@ -45,7 +45,6 @@ with st.sidebar:
     st.page_link("pages/page_5.py", label="Media Search", icon="🎥")
     st.page_link("pages/page_6.py", label="Image Generation", icon="🎨")
     st.page_link("pages/page_7.py", label="Customer Service Chatbot", icon="🤖")
-    st.page_link("pages/page_8.py", label="Article Generation", icon="📖")
     st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/create/text?project=lwk-genai-test", label="GCP Console - Gemini", icon="🌎")
     st.page_link("https://pantheon.corp.google.com/gen-app-builder/locations/global/engines/lwk-rag-search_1713579191717/preview/search?e=13803378&mods=dm_deploy_from_gcs&project=lwk-genai-test", label="GCP Console - Vertex AI Searh", icon="🌎")
     st.text("")

@@ -6,18 +6,41 @@ import google.auth.transport.requests
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
+import json
+import logging
 
-credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
+logging.basicConfig(level=logging.DEBUG)
 
-creds = service_account.Credentials.from_service_account_info(
-    credentials_info,
-    scopes=["https://www.googleapis.com/auth/cloud-platform"]
-)
+try:
+    # 1. 提取 TOML 格式的凭证信息
+    credentials_toml = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
+    
+    # 2. 将 TOML 格式转换为 JSON 格式
+    credentials_dict = dict(credentials_toml)
+    credentials_json = json.dumps(credentials_dict)
+    
+    logging.debug(f"Credential keys: {list(credentials_dict.keys())}")
+    
+    # 3. 使用 JSON 创建 Google 服务账号凭证
+    creds = service_account.Credentials.from_service_account_info(
+        json.loads(credentials_json),
+        scopes=["https://www.googleapis.com/auth/cloud-platform"]
+    )
+    logging.debug("Credentials created successfully")
 
-auth_req = google.auth.transport.requests.Request()
-creds.refresh(auth_req)
+    # 4. 刷新凭证并初始化 VertexAI
+    auth_req = google.auth.transport.requests.Request()
+    creds.refresh(auth_req)
+    logging.debug("Credentials refreshed successfully")
+    
+    vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
+    logging.debug("VertexAI initialized successfully")
 
-vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
+    st.success("Authentication and initialization completed successfully!")
+
+except Exception as e:
+    logging.error(f"Error in credential processing or VertexAI initialization: {str(e)}")
+    st.error(f"An error occurred: {str(e)}")
 
 # Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])

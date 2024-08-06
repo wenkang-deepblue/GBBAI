@@ -30,16 +30,64 @@ headers = {
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
 with cent_co:
     st.title(":blue[GBB] :rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
+left_co, cent_co,last_co = st.columns([0.39,0.31,0.3])
 with cent_co:
-    st.caption(":blue[_Enterprise Media Search Engine_]")
-st.image('https://storage.googleapis.com/ghackathon/page_5.png')
+    st.caption(":blue[_企业级媒体搜索引擎_]")
+st.image('https://storage.googleapis.com/ghackathon/page_3_zh.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
 
+with st.sidebar:
+    left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
+    with cent_co:
+        st.image('https://storage.googleapis.com/ghackathon/image2.gif')
+    left_co, cent_co,last_co = st.columns([0.36,0.32,0.32])
+    with cent_co:
+        st.title(":blue[GBB] :rainbow[AI]")
+    st.page_link("homepage.py", label="主页", icon="🏠")
+    st.page_link("pages/page_0.py", label="文本生成", icon="📖")
+    st.page_link("pages/page_9.py", label="视频理解", icon="🎞️")
+    st.page_link("pages/page_13.py", label="文本翻译", icon="🇺🇳")
+    st.page_link("pages/page_2.py", label="RAG搜索", icon="🔍")
+    st.page_link("pages/page_3.py", label="媒体搜索", icon="🎥")
+    st.page_link("pages/page_16.py", label="图片生成", icon="🎨")
+    st.page_link("pages/page_18.py", label="聊天机器人", icon="💬")
+    st.page_link("pages/page_15.py", label="游戏客服平台", icon="🤖")
+    st.page_link("pages/page_21.py", label="电商客服平台", icon="🤖")
+    st.page_link("pages/page_19.py", label="Claude3.5聊天机器人", icon="💬")
+    st.page_link("pages/page_23.py", label="Llama3.1聊天机器人", icon="💬")
+    st.page_link("https://translationhub.cloud.google.com/portal/cbec99246ab9ab5?projectId=210890376426", label="GCP翻译门户", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/create/text?project=lwk-genai-test", label="GCP控制台 - Gemini", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/gen-app-builder/locations/global/engines/lwk-rag-search_1713579191717/preview/search?e=13803378&mods=dm_deploy_from_gcs&project=lwk-genai-test", label="GCP控制台 - RAG搜索", icon="🌎")
+    st.text("")
+    st.subheader('', divider='rainbow')
+    st.text("")
+    st.markdown(
+        """
+    ## 关于
+    这是由:blue[Google Cloud Vertex AI]驱动的生成式AI平台以及企业级RAG搜索引擎
+    - [:cloud: Google Cloud Vertex AI](https://cloud.google.com/vertex-ai?hl=en)
+
+    """
+    )
+    st.text("")
+    st.text("")
+    st.text("")
+    st.text("")
+    st.text("")
+    left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
+    with cent_co:
+        st.write('© GBB')
+    left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])
+    with cent_co:
+        st.write(':grey[Designed & Developed by] :blue[李文康]')
+    left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
+    with cent_co:
+        st.write(':grey[Powered by] **Vertex AI**')
+
 # Set the request body
-query = st.text_area("Please input your question:", "", placeholder="There are 3 movies in this database: Up, Wall-E and Harry Porter and the Philosopher's Stone. You can ask questions about these 3 movies, e.g. is there a movie about robot?")
+query = st.text_area("请输入您的问题:", "")  # Replace this with your actual query
 body = {
     "query": {"input": query},
     "summarySpec": {
@@ -51,99 +99,52 @@ body = {
 }
 
 content_dict = {
-    "飞屋环游记": {
-        "image": "https://storage.googleapis.com/lwk-rag-videos/Up.jpg",
+    "飞屋": {
+        "image": "../rag-demo/pics/up.jpg",
         "file": "https://storage.googleapis.com/lwk-testing-files/video_1.mp4"
     },
-    "机器人总动员": {
-        "image": "https://storage.googleapis.com/lwk-rag-videos/Wall-E.jpg",
+    "机器人": {
+        "image": "../rag-demo/pics/Wall-E.jpg",
         "file": "https://storage.googleapis.com/lwk-testing-files/video_3.mp4"
     },
-    "好想去你的世界爱你": {
-        "image": "https://storage.googleapis.com/lwk-rag-videos/I-wanna-go-to-your-world-to-love-you.png",
+    "爱你": {
+        "image": "../rag-demo/pics/I-wanna-go-to-your-world-to-love-you.png",
         "file": "https://storage.googleapis.com/lwk-testing-files/video_2.mp4"
     },
-    "春暖花开去见你": {
-        "image": "https://storage.googleapis.com/lwk-rag-videos/meet%20you%20in%20spring.jpeg",
+    "春暖花开": {
+        "image": "../rag-demo/pics/meet you in spring.jpeg",
         "file": "https://storage.googleapis.com/lwk-testing-files/video_4.mp4"
     },
-    "哈利波特与魔法石": {
-        "image": "https://storage.googleapis.com/lwk-rag-videos/Harry%20Porter%20and%20Philosopher's%20Stone.jpg",
+    "哈利波特": {
+        "image": "../rag-demo/pics/Harry Porter and Philosopher's Stone.jpg",
         "file": "https://storage.googleapis.com/lwk-testing-files/video_5.mp4"
     }
 }
 
 # Make the POST request to the Discovery Engine API
 with st.form("myform"):
-    left_co, cent_co,last_co = st.columns([0.42,0.3,0.28])
+    left_co, cent_co,last_co = st.columns([0.44,0.28,0.28])
     with cent_co:
-        submitted = st.form_submit_button("Submit")
+        submitted = st.form_submit_button("提交")
     if submitted:
-        with st.spinner('Your question is being processed, the answer is upcoming...'):
+        with st.spinner('正在处理，不要着急哦，答案正在路上...'):
             response = requests.post(endpoint_url, headers=headers, json=body)
-            answer = response.json()
+            answer = response.json()["reply"]["reply"]
         
-            reply_text = answer['reply']['reply']  # get text following 'reply'
-            title = answer['reply']['summary']['summaryWithMetadata']['references'][0]['title']
-            
-            st.markdown(reply_text)
+            st.info(response.json()["reply"]["reply"] if response.status_code == 200 else response.text)
+# Check the status code of the response and print the response body
 
+    # 检查回答是否包含关键词，并展示对应的图片和链接
+    
             for keyword in content_dict:
-                if keyword in title:
+                if keyword in answer:
                     content=content_dict[keyword]
                     left_co, cent_co,last_co = st.columns([0.15,0.7,0.15])
                     with cent_co:
                         st.image(content["image"])
                     left_co, cent_co,last_co = st.columns([0.44,0.28,0.28])
                     with cent_co:
-                        st.write(f'[Watch Online]({content["file"]})')         
-                    break
+                        st.write(f'[在线观看]({content["file"]})')         
+                    break  # 只展示第一个匹配的关键词
             else:
-                st.write("Can't find related information")
-
-with st.sidebar:
-    left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
-    with cent_co:
-        st.image('https://storage.googleapis.com/ghackathon/image2.gif')
-    left_co, cent_co,last_co = st.columns([0.36,0.32,0.32])
-    with cent_co:
-        st.title(":blue[GBB] :rainbow[AI]")
-    st.page_link("homepage.py", label="Homepage", icon="🏠")
-    st.page_link("pages/page_1.py", label="Article Generation", icon="📖")
-    st.page_link("pages/page_2.py", label="Media Comprehension", icon="🎞️")
-    st.page_link("pages/page_3.py", label="Text Translation", icon="🇺🇳")
-    st.page_link("pages/page_4.py", label="Document Search", icon="🔍")
-    st.page_link("pages/page_5.py", label="Media Search", icon="🎥")
-    st.page_link("pages/page_6.py", label="Image Generation", icon="🎨")
-    st.page_link("pages/page_7.py", label="Customer Service Chatbot", icon="🤖")
-    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/create/text?project=lwk-genai-test", label="GCP Console - Gemini", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/gen-app-builder/locations/global/engines/lwk-rag-search_1713579191717/preview/search?e=13803378&mods=dm_deploy_from_gcs&project=lwk-genai-test", label="GCP Console - Vertex AI Searh", icon="🌎")
-    st.text("")
-    st.subheader('', divider='rainbow')
-    st.text("")
-    st.markdown(
-        """
-    ## About
-    This is an enterprise readiness GenAI platform powered by :blue[Google Cloud Vertex AI]
-    - [:cloud: Google Cloud Vertex AI](https://cloud.google.com/vertex-ai?hl=en)
-
-    """
-    )
-    st.text("")
-    st.text("")
-    st.text("")
-    st.text("")
-    st.text("")
-    left_co, cent_co,last_co = st.columns([0.3,0.4,0.30])
-    with cent_co:
-        st.write('© [Wenkang Li](https://moma.corp.google.com/person/wenkangli?q=image%20generatioin%20streamlit)')
-    left_co, cent_co,last_co = st.columns([0.2,0.79,0.1])
-    with cent_co:
-        st.write(
-        '''
-        :grey[Designed & Developed by]
-        :blue[Wenkang Li & Gunther Hua]'''
-         )
-    left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
-    with cent_co:
-        st.write(':grey[Powered by] **Vertex AI**')
+                st.write("未找到匹配关键词")

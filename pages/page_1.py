@@ -9,23 +9,18 @@ import vertexai.preview.generative_models as generative_models
 import json
 import logging
 
-# 配置日志
-logging.basicConfig(level=logging.ERROR)
-
-def safe_get_credential_info(cred_dict):
-    """安全地获取凭证信息的非敏感部分"""
-    return {
-        "type": cred_dict.get("type"),
-        "project_id": cred_dict.get("project_id"),
-        "client_email": cred_dict.get("client_email")
-    }
+def process_credentials(cred_dict):
+    # 处理多行私钥
+    if 'private_key' in cred_dict:
+        cred_dict['private_key'] = cred_dict['private_key'].replace('\\n', '\n')
+    return cred_dict
 
 try:
-    # 获取TOML格式的凭证信息
+    # 获取 TOML 格式的凭证信息
     credentials_toml = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
     
-    # 将TOML格式转换为字典
-    credentials_dict = dict(credentials_toml)
+    # 将 TOML 格式转换为字典并处理
+    credentials_dict = process_credentials(dict(credentials_toml))
     
     # 创建凭证对象
     creds = service_account.Credentials.from_service_account_info(
@@ -34,16 +29,23 @@ try:
     )
     
     # 验证凭证
-    request = google.auth.transport.requests.Request()
-    creds.refresh(request)
+    auth_req = google.auth.transport.requests.Request()
+    creds.refresh(auth_req)
     
     st.success("Successfully loaded and verified credentials!")
-    st.write("Credential info:", safe_get_credential_info(credentials_dict))
+    
+    # 显示非敏感的凭证信息
+    safe_info = {k: v for k, v in credentials_dict.items() if k not in ['private_key', 'private_key_id']}
+    st.write("Partial credential info (non-sensitive):", json.dumps(safe_info, indent=2))
 
 except Exception as e:
-    logging.error(f"Error loading credentials: {str(e)}")
-    st.error("An error occurred while loading the credentials. Please check the application logs for more details.")
-    st.write("Partial credential info (non-sensitive):", safe_get_credential_info(credentials_dict))
+    st.error(f"An error occurred while loading the credentials: {str(e)}")
+    st.error("Please check the application logs for more details.")
+    
+    # 显示非敏感的凭证信息（即使在错误情况下）
+    if 'credentials_dict' in locals():
+        safe_info = {k: v for k, v in credentials_dict.items() if k not in ['private_key', 'private_key_id']}
+        st.write("Partial credential info (non-sensitive):", json.dumps(safe_info, indent=2))
 
 # Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])

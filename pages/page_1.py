@@ -9,39 +9,17 @@ import vertexai.preview.generative_models as generative_models
 import json
 import logging
 
-def process_credentials(cred_dict):
-    if 'private_key' in cred_dict:
-        # 移除多余的引号和换行符
-        cred_dict['private_key'] = cred_dict['private_key'].strip('"""').replace('\\n', '\n')
-    return cred_dict
+credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
-try:
-    # 获取TOML格式的凭证信息
-    credentials_toml = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
-    
-    # 将TOML格式转换为字典并处理
-    credentials_dict = process_credentials(dict(credentials_toml))
-    
-    # 创建凭证对象
-    creds = service_account.Credentials.from_service_account_info(
-        credentials_dict,
-        scopes=["https://www.googleapis.com/auth/cloud-platform"]
-    )
-    
-    st.success("Successfully loaded credentials!")
-    
-    # 显示非敏感的凭证信息
-    safe_info = {k: v for k, v in credentials_dict.items() if k not in ['private_key', 'private_key_id']}
-    st.write("Partial credential info (non-sensitive):", json.dumps(safe_info, indent=2))
+creds = service_account.Credentials.from_service_account_info(
+    credentials_info,
+    scopes=["https://www.googleapis.com/auth/cloud-platform"]
+)
 
-except Exception as e:
-    st.error(f"An error occurred while loading the credentials: {str(e)}")
-    st.error("Please check the application logs for more details.")
-    
-    # 显示非敏感的凭证信息（即使在错误情况下）
-    if 'credentials_dict' in locals():
-        safe_info = {k: v for k, v in credentials_dict.items() if k not in ['private_key', 'private_key_id']}
-        st.write("Partial credential info (non-sensitive):", json.dumps(safe_info, indent=2))
+auth_req = google.auth.transport.requests.Request()
+creds.refresh(auth_req)
+
+vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
 
 # Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])

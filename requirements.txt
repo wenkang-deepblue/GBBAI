@@ -5,3 +5,6 @@ protobuf
 Requests==2.32.3
 streamlit
 google.auth
+google.oauth2
+logging
+json

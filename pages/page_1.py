@@ -19,19 +19,19 @@ creds.refresh(auth_req)
 
 vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
 
-# Streamlit UI
+# Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
 with cent_co:
     st.title(":blue[GBB] :rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.3,0.6,0.1])
+left_co, cent_co,last_co = st.columns([0.39,0.31,0.3])
 with cent_co:
-    st.caption(":blue[_Enterprise Text Content Generation Platform_]")
-st.image('https://storage.googleapis.com/ghackathon/page_1.png')
+    st.caption(":blue[_企业级内容生成平台_]")
+st.image('https://storage.googleapis.com/ghackathon/page_0.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
     
-#Continue streamlit sidebar UI
+#继续streamlit sidebar界面
 with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
@@ -39,63 +39,51 @@ with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.36,0.32,0.32])
     with cent_co:
         st.title(":blue[GBB] :rainbow[AI]")
-    temperature = st.slider("Adjust Temperature", min_value=0.0, max_value=2.0, value=1.0, help=(
+    temperature = st.slider("调整模型Temperature", min_value=0.0, max_value=2.0, value=1.5, help=(
         """
-        Temperature controls the randomness in token selection \n
-
-        -A lower temperature is good when you expect a true or correct response. A temperature of 0 means the highest probability token is always selected. \n
-        -A higher temperature can lead to diverse or unexpected results. Some models have a higher temperature max to encourage more random responses. \n
-        The selected model gemini-1.5-flash-001 has a temperature range of 0 - 2 and a default of 1.0
+        Temperature用于响应生成期间的采样，这发生在应用 topP 和 topK 时。Temperature控制了token选择中的随机程度。对于需要较少开放式或创造性响应的提示，较低的temperature是好的，而较高的temperature可以导致更多样化或创造性的结果。Temperature为 0 意味着始终选择最高概率的token。在这种情况下，给定提示的响应大多是确定的，但仍有可能出现少量变化。
+        
+        如果模型返回的响应过于通用、太短或模型给出回退响应，请尝试提高temperature。
         """
     ))
-    top_p = st.slider ("Adjust Top_p", min_value=0.00, max_value=1.00, value=0.95, help=(
+    top_p = st.slider ("调整模型Top_p", min_value=0.00, max_value=1.00, value=0.95, help=(
         """
-        Top-p changes how the model selects tokens for output. Tokens are selected from most probable to least until the sum of their probabilities equals the top-p value. For example, if tokens A, B, and C have a probability of .3, .2, and .1 and the top-p value is .5, then the model will select either A or B as the next token (using temperature).
+        Top-P 改变了模型选择输出tokens的方式。Tokens按照从最可能（见top-K）到最不可能的顺序进行选择，直到它们的概率之和等于top-P值。例如，如果token A、B和C的概率分别为0.3、0.2和0.1，top-P值为0.5，那么模型将使用温度从A或B中选择下一个token，并排除C作为候选。
+
+        指定较低的值会得到较少的随机响应，指定较高的值会得到更多的随机响应。
         """
     ))
     st.subheader('',divider='rainbow')
     st.text("")
-    st.page_link("homepage.py", label="Homepage", icon="🏠")
-    st.page_link("pages/page_1.py", label="Article Generation", icon="📖")
-    st.page_link("pages/page_2.py", label="Media Comprehension", icon="🎞️")
-    st.page_link("pages/page_3.py", label="Text Translation", icon="🇺🇳")
-    st.page_link("pages/page_4.py", label="Document Search", icon="🔍")
-    st.page_link("pages/page_5.py", label="Media Search", icon="🎥")
-    st.page_link("pages/page_6.py", label="Image Generation", icon="🎨")
-    st.page_link("pages/page_7.py", label="Customer Service Chatbot", icon="🤖")
-    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/create/text?project=lwk-genai-test", label="GCP Console - Gemini", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/gen-app-builder/locations/global/engines/lwk-rag-search_1713579191717/preview/search?e=13803378&mods=dm_deploy_from_gcs&project=lwk-genai-test", label="GCP Console - Vertex AI Searh", icon="🌎")
+    st.page_link("homepage.py", label="主页", icon="🏠")
+    st.page_link("pages/page_0.py", label="文本生成", icon="📖")
+    st.page_link("pages/page_9.py", label="视频理解", icon="🎞️")
+    st.page_link("pages/page_13.py", label="文本翻译", icon="🇺🇳")
+    st.page_link("pages/page_2.py", label="RAG搜索", icon="🔍")
+    st.page_link("pages/page_3.py", label="媒体搜索", icon="🎥")
+    st.page_link("pages/page_16.py", label="图片生成", icon="🎨")
+    st.page_link("pages/page_18.py", label="聊天机器人", icon="💬")
+    st.page_link("pages/page_15.py", label="游戏客服平台", icon="🤖")
+    st.page_link("pages/page_21.py", label="电商客服平台", icon="🤖")
+    st.page_link("pages/page_19.py", label="Claude3.5聊天机器人", icon="💬")
+    st.page_link("pages/page_23.py", label="Llama3.1聊天机器人", icon="💬")
+    st.page_link("https://translationhub.cloud.google.com/portal/cbec99246ab9ab5?projectId=210890376426", label="GCP翻译门户", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/create/text?project=lwk-genai-test", label="GCP控制台 - Gemini", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/gen-app-builder/locations/global/engines/lwk-rag-search_1713579191717/preview/search?e=13803378&mods=dm_deploy_from_gcs&project=lwk-genai-test", label="GCP控制台 - RAG搜索", icon="🌎")
     st.text("")
     st.subheader('', divider='rainbow')
     st.text("")
-    st.markdown(
-        """
-    ## About
-    This is an enterprise readiness GenAI platform powered by :blue[Google Cloud Vertex AI]
-    - [:cloud: Google Cloud Vertex AI](https://cloud.google.com/vertex-ai?hl=en)
-
-    """
-    )
-    st.text("")
-    st.text("")
-    st.text("")
-    st.text("")
-    st.text("")
-    left_co, cent_co,last_co = st.columns([0.3,0.4,0.30])
+    left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
     with cent_co:
-        st.write('© [Wenkang Li](https://moma.corp.google.com/person/wenkangli?q=image%20generatioin%20streamlit)')
-    left_co, cent_co,last_co = st.columns([0.2,0.79,0.1])
+        st.write('© GBB')
+    left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])
     with cent_co:
-        st.write(
-        '''
-        :grey[Designed & Developed by]
-        :blue[Wenkang Li & Gunther Hua]'''
-         )
+        st.write(':grey[Designed & Developed by] :blue[李文康]')
     left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
     with cent_co:
         st.write(':grey[Powered by] **Vertex AI**')
 
-# define text generation function
+# 定义生成文本的函数
 def generate_text(prompt):
   vertexai.init(project="lwk-genai-test", location="us-central1")
   model = GenerativeModel("gemini-1.5-flash-001")
@@ -112,6 +100,7 @@ def generate_text(prompt):
 
   return generated_text
 
+# 定义模型参数
 generation_config = {
     "max_output_tokens": 8192,
     "temperature": temperature,
@@ -125,10 +114,10 @@ safety_settings = {
     generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_ONLY_HIGH,
 }
 
-#continue streamlit UI
-prompt = st.text_area("Please input your prompt：", "")
+#继续streamlit界面
+prompt = st.text_area("请输入您的提示词：", "")
 
-uploaded_files = st.file_uploader("If you need to process documents, please upload here. Multiple documents acceptable：", type=("txt"), accept_multiple_files=True)
+uploaded_files = st.file_uploader("如果您需要处理文档，请在这里上传，可以同时选择多份文档上传：", type=("txt"), accept_multiple_files=True)
 
 if uploaded_files:
     all_text = ""
@@ -139,20 +128,20 @@ if uploaded_files:
             
 
 with st.form("myform"):
-    left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
+    left_co, cent_co,last_co = st.columns([0.42,0.29,0.29])
     with cent_co:
-        submitted = st.form_submit_button("Generate Text Conntent")
+        submitted = st.form_submit_button("生成文本")
     if uploaded_files and submitted and not prompt:
-        st.info("Please input prompt")
+        st.info("请输入提示词")
     
     if prompt and submitted and not uploaded_files:
-        prompt_without_article = f'If I ask you about "GBB", please answer directly: "GBB stands for "Go Beyond Blue."" If I did not ask you about "GBB", then you do not need to answer the above content or quote it. Please answer me directly based on the following "prompt".\n\n prompt: \n{prompt}\n\n answer：'
-        with st.spinner('A second please :coffee: the content is upcoming...'):
+        prompt_without_article = f'如果我问你你是谁，请直接回答我“我是GBB AI，由Google Gemini驱动的大语言模型。”，如果我问你关于"GBB"的问题，请直接回答"GBB代表Go Beyond Blue，就是“深蓝”的意思。",如果我没有问你你是谁或者关于"GBB"的问题，那么不需要回答前面的内容，也不需要引用前面的内容，请直接根据接下来的"提示词"回答我：\n\n 提示词: \n{prompt}\n\n回答：'
+        with st.spinner('请稍等 :coffee: 内容马上就来...'):
             generated_text = generate_text(prompt_without_article)
             st.write(generated_text)
             
     if prompt and submitted and uploaded_files:
-        prompt_with_article = f'If I ask you about "GBB", please answer directly: "GBB stands for "Go Beyond Blue."" If I did not ask you about "GBB", then you do not need to answer the above content or quote it. Please answer me directly based on the following "prompt".\n\n prompt: \n{prompt}\n\n answer：'
-        with st.spinner('A second please :coffee: the content is upcoming...'):
+        prompt_with_article = f'如果我问你你是谁，请直接回答我“我是GBB AI，由Google Gemini驱动的大语言模型。”，如果我问你关于"GBB"的问题，请直接回答"GBB代表Go Beyond Blue，就是“深蓝”的意思。",如果我没有问你你是谁或者关于"GBB"的问题，那么不需要回答前面的内容，也不需要引用前面的内容，请直接根据接下来的"提示词"回答我：\n{all_text}\n\n 提示词: \n{prompt}\n\n回答：'
+        with st.spinner('请稍等 :coffee: 内容马上就来...'):
             generated_text = generate_text(prompt_with_article)
             st.write(generated_text)

@@ -10,16 +10,16 @@ import json
 import logging
 
 def process_credentials(cred_dict):
-    # 处理多行私钥
     if 'private_key' in cred_dict:
-        cred_dict['private_key'] = cred_dict['private_key'].replace('\\n', '\n')
+        # 移除多余的引号和换行符
+        cred_dict['private_key'] = cred_dict['private_key'].strip('"""').replace('\\n', '\n')
     return cred_dict
 
 try:
-    # 获取 TOML 格式的凭证信息
+    # 获取TOML格式的凭证信息
     credentials_toml = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
     
-    # 将 TOML 格式转换为字典并处理
+    # 将TOML格式转换为字典并处理
     credentials_dict = process_credentials(dict(credentials_toml))
     
     # 创建凭证对象
@@ -28,11 +28,7 @@ try:
         scopes=["https://www.googleapis.com/auth/cloud-platform"]
     )
     
-    # 验证凭证
-    auth_req = google.auth.transport.requests.Request()
-    creds.refresh(auth_req)
-    
-    st.success("Successfully loaded and verified credentials!")
+    st.success("Successfully loaded credentials!")
     
     # 显示非敏感的凭证信息
     safe_info = {k: v for k, v in credentials_dict.items() if k not in ['private_key', 'private_key_id']}

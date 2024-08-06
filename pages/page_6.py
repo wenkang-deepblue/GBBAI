@@ -21,14 +21,14 @@ creds.refresh(auth_req)
 
 vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
 
-# Streamlit UI
+# Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
 with cent_co:
     st.title(":blue[GBB] :rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.33,0.38,0.29])
+left_co, cent_co,last_co = st.columns([0.39,0.32,0.29])
 with cent_co:
-    st.caption(":blue[_Enterprise Image Generation Platform_]")
-st.image('https://storage.googleapis.com/ghackathon/page_6.png')
+    st.caption(":blue[_企业级图片生成平台_]")
+st.image('https://storage.googleapis.com/ghackathon/page_16_zh.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
@@ -40,25 +40,57 @@ with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.36,0.32,0.32])
     with cent_co:
         st.title(":blue[GBB] :rainbow[AI]")
-    number_of_images = st.slider("Number of generated image", min_value=1, max_value=4, value=4)
+    number_of_images = st.slider("生成图片数量", min_value=1, max_value=4, value=4)
     aspect_ratio = st.selectbox(
-    "Please choose image aspect ratio：",
+    "请选择图片比例：",
     ("1:1", "9:16", "16:9", "3:4", "4:3"),
     index=None,
-    placeholder="Image aspect ratio")
+    placeholder="请选择宽高比")
     st.subheader('',divider='rainbow')
-    
-prompt = st.text_area("Please input your prompt：", "")
-    
-# Define project information
-PROJECT_ID = "lwk-genai-test"
-LOCATION = "us-central1"
-output_files = None
+    st.page_link("homepage.py", label="主页", icon="🏠")
+    st.page_link("pages/page_0.py", label="文本生成", icon="📖")
+    st.page_link("pages/page_9.py", label="视频理解", icon="🎞️")
+    st.page_link("pages/page_13.py", label="文本翻译", icon="🇺🇳")
+    st.page_link("pages/page_2.py", label="RAG搜索", icon="🔍")
+    st.page_link("pages/page_3.py", label="媒体搜索", icon="🎥")
+    st.page_link("pages/page_16.py", label="图片生成", icon="🎨")
+    st.page_link("pages/page_18.py", label="聊天机器人", icon="💬")
+    st.page_link("pages/page_15.py", label="游戏客服平台", icon="🤖")
+    st.page_link("pages/page_21.py", label="电商客服平台", icon="🤖")
+    st.page_link("pages/page_19.py", label="Claude3.5聊天机器人", icon="💬")
+    st.page_link("pages/page_23.py", label="Llama3.1聊天机器人", icon="💬")
+    st.page_link("https://translationhub.cloud.google.com/portal/cbec99246ab9ab5?projectId=210890376426", label="GCP翻译门户", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/create/text?project=lwk-genai-test", label="GCP控制台 - Gemini", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/gen-app-builder/locations/global/engines/lwk-rag-search_1713579191717/preview/search?e=13803378&mods=dm_deploy_from_gcs&project=lwk-genai-test", label="GCP控制台 - RAG搜索", icon="🌎")
+    st.text("")
+    st.subheader('', divider='rainbow')
+    st.text("")
+    st.markdown(
+        """
+    ## 关于
+    这是由:blue[Google Cloud Vertex AI]驱动的生成式AI平台以及企业级RAG搜索引擎
+    - [:cloud: Google Cloud Vertex AI](https://cloud.google.com/vertex-ai?hl=en)
 
-# Initialize Vertex AI
-vertexai.init(project=PROJECT_ID, location=LOCATION)
+    """
+    )
+    st.text("")
+    st.text("")
+    st.text("")
+    st.text("")
+    st.text("")
+    left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
+    with cent_co:
+        st.write('© GBB')
+    left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])
+    with cent_co:
+        st.write(':grey[Designed & Developed by] :blue[李文康]')
+    left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
+    with cent_co:
+        st.write(':grey[Powered by] **Vertex AI**')
+    
+prompt = st.text_area("请输入您的提示词：", "")
 
-generation_model = ImageGenerationModel.from_pretrained("imagegeneration@006")
+generation_model = ImageGenerationModel.from_pretrained("imagen-3.0-generate-001")
 
 def generate_image(prompt):
     images = generation_model.generate_images(
@@ -79,7 +111,7 @@ def generate_image(prompt):
     return output_files
     
 def display_images(image_files):
-    """Adjust display layout according to image number"""
+    """根据图片数量调整显示布局"""
     num_images = len(image_files)
     if num_images == 1:
         st.image(image_files[0])
@@ -108,56 +140,15 @@ def display_images(image_files):
             st.image(image_files[3])
     
 with st.form("myform"):
-    left_co, cent_co,last_co = st.columns([0.38,0.33,0.29])
+    left_co, cent_co,last_co = st.columns([0.42,0.29,0.29])
     with cent_co:
-        submitted = st.form_submit_button("Generate Image")
+        submitted = st.form_submit_button("生成图片")
         
 if prompt and submitted and not aspect_ratio:
-    st.error("👈 Please choose image aspect ratio")
+    st.error("👈 请选择您的图片宽高比。")
 
 if prompt and submitted and aspect_ratio:
-    with st.spinner('A moment please :coffee: image upcoming...'):
+    with st.spinner('请稍等 :coffee: 正在生成图片...'):
         output_files=generate_image(prompt)
         if output_files:
             display_images(output_files)
-                
-with st.sidebar:
-    st.page_link("homepage.py", label="Homepage", icon="🏠")
-    st.page_link("pages/page_1.py", label="Article Generation", icon="📖")
-    st.page_link("pages/page_2.py", label="Media Comprehension", icon="🎞️")
-    st.page_link("pages/page_3.py", label="Text Translation", icon="🇺🇳")
-    st.page_link("pages/page_4.py", label="Document Search", icon="🔍")
-    st.page_link("pages/page_5.py", label="Media Search", icon="🎥")
-    st.page_link("pages/page_6.py", label="Image Generation", icon="🎨")
-    st.page_link("pages/page_7.py", label="Customer Service Chatbot", icon="🤖")
-    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/create/text?project=lwk-genai-test", label="GCP Console - Gemini", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/gen-app-builder/locations/global/engines/lwk-rag-search_1713579191717/preview/search?e=13803378&mods=dm_deploy_from_gcs&project=lwk-genai-test", label="GCP Console - Vertex AI Searh", icon="🌎")
-    st.text("")
-    st.subheader('', divider='rainbow')
-    st.text("")
-    st.markdown(
-        """
-    ## About
-    This is an enterprise readiness GenAI platform powered by :blue[Google Cloud Vertex AI]
-    - [:cloud: Google Cloud Vertex AI](https://cloud.google.com/vertex-ai?hl=en)
-
-    """
-    )
-    st.text("")
-    st.text("")
-    st.text("")
-    st.text("")
-    st.text("")
-    left_co, cent_co,last_co = st.columns([0.3,0.4,0.30])
-    with cent_co:
-        st.write('© [Wenkang Li](https://moma.corp.google.com/person/wenkangli?q=image%20generatioin%20streamlit)')
-    left_co, cent_co,last_co = st.columns([0.2,0.79,0.1])
-    with cent_co:
-        st.write(
-        '''
-        :grey[Designed & Developed by]
-        :blue[Wenkang Li & Gunther Hua]'''
-         )
-    left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
-    with cent_co:
-        st.write(':grey[Powered by] **Vertex AI**')

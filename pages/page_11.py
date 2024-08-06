@@ -8,6 +8,18 @@ from PIL import Image
 import io
 import base64
 
+credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
+
+creds = service_account.Credentials.from_service_account_info(
+    credentials_info,
+    scopes=["https://www.googleapis.com/auth/cloud-platform"]
+)
+
+auth_req = google.auth.transport.requests.Request()
+creds.refresh(auth_req)
+
+vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
+
 APP_ID = "llama_chat"
 
 def load_gif(gif_path):

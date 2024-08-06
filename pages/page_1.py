@@ -9,38 +9,41 @@ import vertexai.preview.generative_models as generative_models
 import json
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+# 配置日志
+logging.basicConfig(level=logging.ERROR)
+
+def safe_get_credential_info(cred_dict):
+    """安全地获取凭证信息的非敏感部分"""
+    return {
+        "type": cred_dict.get("type"),
+        "project_id": cred_dict.get("project_id"),
+        "client_email": cred_dict.get("client_email")
+    }
 
 try:
-    # 1. 提取 TOML 格式的凭证信息
+    # 获取TOML格式的凭证信息
     credentials_toml = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
     
-    # 2. 将 TOML 格式转换为 JSON 格式
+    # 将TOML格式转换为字典
     credentials_dict = dict(credentials_toml)
-    credentials_json = json.dumps(credentials_dict)
     
-    logging.debug(f"Credential keys: {list(credentials_dict.keys())}")
-    
-    # 3. 使用 JSON 创建 Google 服务账号凭证
+    # 创建凭证对象
     creds = service_account.Credentials.from_service_account_info(
-        json.loads(credentials_json),
+        credentials_dict,
         scopes=["https://www.googleapis.com/auth/cloud-platform"]
     )
-    logging.debug("Credentials created successfully")
-
-    # 4. 刷新凭证并初始化 VertexAI
-    auth_req = google.auth.transport.requests.Request()
-    creds.refresh(auth_req)
-    logging.debug("Credentials refreshed successfully")
     
-    vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
-    logging.debug("VertexAI initialized successfully")
-
-    st.success("Authentication and initialization completed successfully!")
+    # 验证凭证
+    request = google.auth.transport.requests.Request()
+    creds.refresh(request)
+    
+    st.success("Successfully loaded and verified credentials!")
+    st.write("Credential info:", safe_get_credential_info(credentials_dict))
 
 except Exception as e:
-    logging.error(f"Error in credential processing or VertexAI initialization: {str(e)}")
-    st.error(f"An error occurred: {str(e)}")
+    logging.error(f"Error loading credentials: {str(e)}")
+    st.error("An error occurred while loading the credentials. Please check the application logs for more details.")
+    st.write("Partial credential info (non-sensitive):", safe_get_credential_info(credentials_dict))
 
 # Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])

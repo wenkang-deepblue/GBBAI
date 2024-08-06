@@ -1,6 +1,35 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
+def custom_page_link(url, label, icon, new_tab=False):
+    corrected_url = url.replace("pages/", "").replace(".py", "")
+    
+    if new_tab:
+        st.markdown(
+            f'''
+            <div class="row-widget stPageLink" style="width: 282px; margin: -0.4rem 0 0.cbec99246ab9ab5rem 0;">
+                <div class="st-emotion-cache-j7qwjs e11k5jya2" style="padding: 0;">
+                    <a href="/{corrected_url}" target="_blank" rel="noopener noreferrer" 
+                       class="st-emotion-cache-n7e918 e11k5jya1" style="display: flex; align-items: center;">
+                        <span color="#31333F" class="st-emotion-cache-6jwljf eyeqlp52" style="margin-right: 0rem;">
+                            <span data-testid="stIconEmoji" aria-hidden="true" 
+                                  class="st-emotion-cache-8hkptd eyeqlp50">{icon}</span>
+                        </span>
+                        <span class="st-emotion-cache-pkbazv e11k5jya0">
+                            <div data-testid="stMarkdownContainer" 
+                                 class="st-emotion-cache-187vdiz e1nzilvr4">
+                                <p style="margin: 0;">{label}</p>
+                            </div>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            ''',
+            unsafe_allow_html=True
+        )
+    else:
+        st.page_link(url, label=label, icon=icon)
+
 # Streamlit UI
 left_left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
 with cent_co:
@@ -32,9 +61,9 @@ with st.sidebar:
         st.page_link("pages/page_21.py", label="电商客服平台", icon="🤖")
         st.page_link("pages/page_19.py", label="Claude3.5聊天机器人", icon="💬")
         st.page_link("pages/page_23.py", label="Llama3.1聊天机器人", icon="💬")
-        st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP翻译门户", icon="🌎")
-        st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/gallery", label="GCP控制台 - Gemini", icon="🌎")
-        st.page_link("https://pantheon.corp.google.com/gen-app-builder/engines", label="GCP控制台 - App Builder", icon="🌎")
+        st.page_link("https://translationhub.cloud.google.com/portal/cbec99246ab9ab5?projectId=210890376426", label="GCP翻译门户", icon="🌎")
+        st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/create/text?project=lwk-genai-test", label="GCP控制台 - Gemini", icon="🌎")
+        st.page_link("https://pantheon.corp.google.com/gen-app-builder/locations/global/engines/lwk-rag-search_1713579191717/preview/search?e=13803378&mods=dm_deploy_from_gcs&project=lwk-genai-test", label="GCP控制台 - RAG搜索", icon="🌎")
         st.text("")
         st.subheader('', divider='rainbow')
         st.text("")
@@ -60,35 +89,6 @@ with st.sidebar:
         left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
         with cent_co:
                 st.write(':grey[Powered by] **Vertex AI**')
-
-def custom_page_link(url, label, icon, new_tab=False):
-    corrected_url = url.replace("pages/", "").replace(".py", "")
-    
-    if new_tab:
-        st.markdown(
-            f'''
-            <div class="row-widget stPageLink" style="width: 282px; margin: -0.4rem 0 0.cbec99246ab9ab5rem 0;">
-                <div class="st-emotion-cache-j7qwjs e11k5jya2" style="padding: 0;">
-                    <a href="/{corrected_url}" target="_blank" rel="noopener noreferrer" 
-                       class="st-emotion-cache-n7e918 e11k5jya1" style="display: flex; align-items: center;">
-                        <span color="#31333F" class="st-emotion-cache-6jwljf eyeqlp52" style="margin-right: 0rem;">
-                            <span data-testid="stIconEmoji" aria-hidden="true" 
-                                  class="st-emotion-cache-8hkptd eyeqlp50">{icon}</span>
-                        </span>
-                        <span class="st-emotion-cache-pkbazv e11k5jya0">
-                            <div data-testid="stMarkdownContainer" 
-                                 class="st-emotion-cache-187vdiz e1nzilvr4">
-                                <p style="margin: 0;">{label}</p>
-                            </div>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            ''',
-            unsafe_allow_html=True
-        )
-    else:
-        st.page_link(url, label=label, icon=icon)
 
 # Embed Dialogflow code within an HTML component
 components.html("""

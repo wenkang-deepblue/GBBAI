@@ -6,7 +6,7 @@ st.set_page_config(
     page_icon="👋",
 )
 
-st.image("../rag-demo/pdf/galaxy banner with logo.png")
+st.image("https://storage.googleapis.com/ghackathon/galaxy%20banner%20with%20logo.png")
 
 
 st.write("# 您好！欢迎使用 :blue[GBB] :rainbow[AI] !")
@@ -32,7 +32,7 @@ st.markdown(
 with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
-        st.image('../rag-demo/pdf/image2.gif')
+        st.image('https://storage.googleapis.com/ghackathon/image2.gif')
     left_co, cent_co,last_co = st.columns([0.36,0.32,0.32])
     with cent_co:
         st.title(":blue[GBB] :rainbow[AI]")

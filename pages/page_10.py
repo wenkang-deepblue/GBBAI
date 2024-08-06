@@ -138,4 +138,4 @@ components.html("""
         margin: auto;
     }
 </style>
-""", height=600) # Adjust height as needed
+""", height=600)

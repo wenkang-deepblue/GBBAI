@@ -8,10 +8,18 @@ from google.oauth2 import service_account
 import google.auth.transport.requests
 from PIL import Image
 
+credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
+creds = service_account.Credentials.from_service_account_info(
+    credentials_info,
+    scopes=["https://www.googleapis.com/auth/cloud-platform"]
+)
+
+auth_req = google.auth.transport.requests.Request()
+creds.refresh(auth_req)
 
 # 初始化AnthropicVertex客户端
-client = AnthropicVertex(region="europe-west1", project_id="lwk-genai-test")
+client = AnthropicVertex(region="europe-west1", project_id="lwk-genai-test", credentials=creds)
 
 APP_ID = "claude_chat"
 

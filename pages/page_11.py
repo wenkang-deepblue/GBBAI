@@ -150,6 +150,7 @@ with st.sidebar:
 MODEL_ID = 'meta/llama3-405b-instruct-maas'
 
 def generate_text(messages):
+    def generate_text(messages):
     response = client.chat.completions.create(
         model=MODEL_ID,
         messages=messages,
@@ -161,9 +162,25 @@ def generate_text(messages):
     # 获取消息内容
     content = response.choices[0].message.content
     
-    # 移除开头的多个"assistant"
-    content = re.sub(r'\n+', '', re.sub(r'^(assistant)+', '', content).lstrip())
-   
+    # 移除开头和结尾的"assistant"
+    content = re.sub(r'^assistant\s*|\s*assistant$', '', content, flags=re.IGNORECASE)
+    
+    # 保护代码块
+    code_blocks = re.findall(r'```[\s\S]*?```', content)
+    for i, block in enumerate(code_blocks):
+        content = content.replace(block, f'___CODE_BLOCK_{i}___')
+    
+    # 处理 \\n（真正的换行）
+    content = content.replace('\\n', '\n')
+    
+    # 处理普通的换行符，保留段落之间的换行，但合并段落内的多个换行
+    content = re.sub(r'\n{2,}', '\n\n', content)  # 将多个连续换行减少为两个
+    content = re.sub(r'(?<!\n)\n(?!\n)', ' ', content)  # 将单个换行替换为空格
+    
+    # 恢复代码块
+    for i, block in enumerate(code_blocks):
+        content = content.replace(f'___CODE_BLOCK_{i}___', block)
+    
     # 返回处理后的消息内容
     return content.strip()
     
@@ -204,6 +221,16 @@ if prompt := st.chat_input():
 
         # 移除GIF
         gif_placeholder.empty()
+        
+        parts = re.split(r'(```[\s\S]*?```)', response)
+        with st.chat_message("assistant"):
+            for part in parts:
+                if part.startswith('```') and part.endswith('```'):
+                    # 提取语言
+                    language = part.split('\n')[0][3:].strip()
+                    code = '\n'.join(part.split('\n')[1:-1])
+                    st.code(code, language=language if language else None)
+                else:
+                    st.markdown(part)
 
-    st.session_state[f"{APP_ID}_messages"].append({"role": "assistant", "content": response})
-    st.chat_message("assistant").write(response)
+        st.session_state[f"{APP_ID}_messages"].append({"role": "assistant", "content": response})

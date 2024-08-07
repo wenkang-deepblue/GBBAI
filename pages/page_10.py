@@ -7,6 +7,7 @@ import google.auth
 from google.oauth2 import service_account
 import google.auth.transport.requests
 from PIL import Image
+import requests
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
@@ -24,12 +25,15 @@ client = AnthropicVertex(region="europe-west1", project_id="lwk-genai-test", cre
 APP_ID = "claude_chat"
 
 def get_custom_loading_gif():
-    with open("https://storage.googleapis.com/ghackathon/typing-dots-40.gif", "rb") as f:
-        contents = f.read()
+    url = "https://storage.googleapis.com/ghackathon/typing-dots-40.gif"
+    response = requests.get(url)
+    if response.status_code == 200:
+        contents = response.content
         data_url = base64.b64encode(contents).decode("utf-8")
-    
-    # 移除alt文本，调整样式以适应您的布局
-    return f'<img src="data:image/gif;base64,{data_url}" style="display: block; margin: auto; width: 30px;">'
+        return f'<img src="data:image/gif;base64,{data_url}" style="display: block; margin: auto; width: 30px;">'
+    else:
+        st.error("无法加载GIF图像")
+        return ""
 
 # Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])

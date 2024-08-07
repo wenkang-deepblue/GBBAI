@@ -3,5 +3,5 @@ langchain==0.2.1
 langchain_google_vertexai==1.0.4
 protobuf
 Requests==2.32.3
-streamlit
+streamlit==1.34.0
 google.auth

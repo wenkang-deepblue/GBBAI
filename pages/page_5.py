@@ -100,23 +100,23 @@ body = {
 
 content_dict = {
     "飞屋": {
-        "image": "../rag-demo/pics/up.jpg",
+        "image": "https://storage.googleapis.com/lwk-rag-videos/Up.jpg",
         "file": "https://storage.googleapis.com/lwk-testing-files/video_1.mp4"
     },
     "机器人": {
-        "image": "../rag-demo/pics/Wall-E.jpg",
+        "image": "https://storage.googleapis.com/lwk-rag-videos/Wall-E.jpg",
         "file": "https://storage.googleapis.com/lwk-testing-files/video_3.mp4"
     },
     "爱你": {
-        "image": "../rag-demo/pics/I-wanna-go-to-your-world-to-love-you.png",
+        "image": "https://storage.googleapis.com/lwk-rag-videos/I-wanna-go-to-your-world-to-love-you.png",
         "file": "https://storage.googleapis.com/lwk-testing-files/video_2.mp4"
     },
     "春暖花开": {
-        "image": "../rag-demo/pics/meet you in spring.jpeg",
+        "image": "https://storage.googleapis.com/lwk-rag-videos/meet%20you%20in%20spring.jpeg",
         "file": "https://storage.googleapis.com/lwk-testing-files/video_4.mp4"
     },
     "哈利波特": {
-        "image": "../rag-demo/pics/Harry Porter and Philosopher's Stone.jpg",
+        "image": "https://storage.googleapis.com/lwk-rag-videos/Harry%20Porter%20and%20Philosopher's%20Stone.jpg",
         "file": "https://storage.googleapis.com/lwk-testing-files/video_5.mp4"
     }
 }

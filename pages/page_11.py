@@ -134,16 +134,6 @@ with st.sidebar:
     with cent_co:
         st.write(':grey[Powered by] **Vertex AI**')
 
-# 初始化Vertex AI和OpenAI客户端
-project_id = "lwk-genai-test"
-location = "us-central1"
-vertexai.init(project=project_id, location=location)
-
-# Programmatically get an access token
-credentials, _ = default(scopes=["https://www.googleapis.com/auth/cloud-platform"])
-auth_request = transport.requests.Request()
-credentials.refresh(auth_request)
-
 url = f"https://us-central1-aiplatform.googleapis.com/v1beta1/projects/lwk-genai-test/locations/us-central1/endpoints/openapi"
 # OpenAI Client
 client = openai.OpenAI(

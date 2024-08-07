@@ -149,8 +149,7 @@ with st.sidebar:
 # LLaMA model
 MODEL_ID = 'meta/llama3-405b-instruct-maas'
 
-def generate_text(messages):
-    def generate_text(messages):
+def generate_text(messages):    
     response = client.chat.completions.create(
         model=MODEL_ID,
         messages=messages,

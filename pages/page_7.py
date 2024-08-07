@@ -233,7 +233,7 @@ with chat_container:
     if st.session_state.need_api_call:
         with st.chat_message("assistant"):
             thinking_placeholder = st.empty()
-            thinking_placeholder.image("../rag-demo/pages/typing-dots-40.gif")
+            thinking_placeholder.image("https://storage.googleapis.com/ghackathon/typing-dots-40.gif")
             response = generate_text(st.session_state.messages[-1]["content"], st.session_state.chat, st.session_state.current_file if st.session_state.file_uploaded else None)
             assistant_msg = response.candidates[0].content.parts[0].text
             thinking_placeholder.empty()

@@ -24,7 +24,7 @@ client = AnthropicVertex(region="europe-west1", project_id="lwk-genai-test", cre
 APP_ID = "claude_chat"
 
 def get_custom_loading_gif():
-    with open("../rag-demo/pages/typing-dots.gif", "rb") as f:
+    with open("https://storage.googleapis.com/ghackathon/typing-dots-40.gif", "rb") as f:
         contents = f.read()
         data_url = base64.b64encode(contents).decode("utf-8")
     

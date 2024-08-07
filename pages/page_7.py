@@ -5,6 +5,9 @@ from vertexai.generative_models import GenerativeModel, Part, Tool
 import vertexai.preview.generative_models as generative_models
 import io
 import uuid
+import google.auth
+from google.oauth2 import service_account
+import google.auth.transport.requests
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 

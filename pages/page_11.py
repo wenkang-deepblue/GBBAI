@@ -1,7 +1,9 @@
 import streamlit as st
 import base64
 import openai
-from google.auth import default, transport
+import google.auth
+from google.oauth2 import service_account
+import google.auth.transport.requests
 import vertexai
 import re
 from PIL import Image

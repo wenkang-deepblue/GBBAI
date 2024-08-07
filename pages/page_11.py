@@ -10,6 +10,7 @@ import re
 from PIL import Image
 import io
 import base64
+import requests
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
@@ -25,11 +26,15 @@ vertexai.init(project="lwk-genai-test", location="us-central1", credentials=cred
 
 APP_ID = "llama_chat"
 
-def load_gif(gif_path):
-    with open(gif_path, "rb") as file:
-        contents = file.read()
-    data_url = base64.b64encode(contents).decode("utf-8")
-    return f"data:image/gif;base64,{data_url}"
+def load_gif(gif_url):
+    response = requests.get(gif_url)
+    if response.status_code == 200:
+        contents = response.content
+        data_url = base64.b64encode(contents).decode("utf-8")
+        return f"data:image/gif;base64,{data_url}"
+    else:
+        st.error(f"无法加载GIF图像：HTTP状态码 {response.status_code}")
+        return ""
 
 # 加载GIF图片
 thinking_gif = load_gif("https://storage.googleapis.com/ghackathon/typing-dots-40.gif")

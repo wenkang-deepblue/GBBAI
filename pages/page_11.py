@@ -13,16 +13,28 @@ import base64
 import requests
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
-
 creds = service_account.Credentials.from_service_account_info(
     credentials_info,
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
 )
 
+# 刷新凭证
 auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
-vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
+# 初始化 Vertex AI
+project_id = "lwk-genai-test"
+location = "us-central1"
+vertexai.init(project=project_id, location=location, credentials=creds)
+
+# 设置 OpenAI 客户端的 URL
+url = f"https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{project_id}/locations/{location}/endpoints/openapi"
+
+# 创建 OpenAI 客户端
+client = openai.OpenAI(
+    base_url=url,         
+    api_key=creds.token,
+)
 
 APP_ID = "llama_chat"
 
@@ -133,13 +145,6 @@ with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
     with cent_co:
         st.write(':grey[Powered by] **Vertex AI**')
-
-url = f"https://us-central1-aiplatform.googleapis.com/v1beta1/projects/lwk-genai-test/locations/us-central1/endpoints/openapi"
-# OpenAI Client
-client = openai.OpenAI(
-    base_url=url,         
-    api_key=credentials.token,
-)
 
 # LLaMA model
 MODEL_ID = 'meta/llama3-405b-instruct-maas'

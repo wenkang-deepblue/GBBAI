@@ -3,7 +3,12 @@ import base64
 from anthropic import AnthropicVertex
 import httpx
 import io
+import google.auth
+from google.oauth2 import service_account
+import google.auth.transport.requests
 from PIL import Image
+
+
 
 # 初始化AnthropicVertex客户端
 client = AnthropicVertex(region="europe-west1", project_id="lwk-genai-test")

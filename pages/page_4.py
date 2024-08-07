@@ -102,27 +102,27 @@ body = {
 # 设置结果返回结果关键词以展示相应图片
 content_dict = {
     "以色列": {
-        "image": "../rag-demo/pdf/以色列.png",
+        "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E4%BB%A5%E8%89%B2%E5%88%97.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E4%BB%A5%E8%89%B2%E5%88%97%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%9B%BD%E5%AE%B6%E7%9A%84%E8%AF%9E%E7%94%9F.pdf"
     },
     "微积分": {
-        "image": "../rag-demo/pdf/微积分.png",
+        "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E5%BE%AE%E7%A7%AF%E5%88%86.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E5%85%AB%E5%8D%A6%E5%BE%AE%E7%A7%AF%E5%88%86.pdf"
     },
     "量子": {
-        "image": "../rag-demo/pdf/量子通信.png",
+        "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E9%87%8F%E5%AD%90%E9%80%9A%E4%BF%A1.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E9%87%8F%E5%AD%90%E9%80%9A%E4%BF%A1.pdf"
     },
     "考古": {
-        "image": "../rag-demo/pdf/考古现场.png",
+        "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E8%80%83%E5%8F%A4%E7%8E%B0%E5%9C%BA.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E5%9B%B4%E8%A7%82%E8%80%83%E5%8F%A4%E7%8E%B0%E5%9C%BA.pdf"
     },
     "近视": {
-        "image": "../rag-demo/pdf/近视.png",
+        "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E8%BF%91%E8%A7%86.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E8%BF%91%E8%A7%86%E6%80%8E%E4%B9%88%E5%8A%9E.pdf"
     },
     "故事":{
-        "image": "../rag-demo/pdf/写故事.png",
+        "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E5%86%99%E6%95%85%E4%BA%8B.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99%E6%95%85%E4%BA%8B.pdf"
     }
 }

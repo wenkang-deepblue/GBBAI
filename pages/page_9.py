@@ -2,14 +2,13 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 def custom_page_link(url, label, icon, new_tab=False):
-    corrected_url = url.replace("pages/", "").replace(".py", "")
     
     if new_tab:
         st.markdown(
             f'''
             <div class="row-widget stPageLink" style="width: 282px; margin: -0.4rem 0 0.cbec99246ab9ab5rem 0;">
                 <div class="st-emotion-cache-j7qwjs e11k5jya2" style="padding: 0;">
-                    <a href="/{corrected_url}" target="_blank" rel="noopener noreferrer" 
+                    <a href="/{url}" target="_blank" rel="noopener noreferrer" 
                        class="st-emotion-cache-n7e918 e11k5jya1" style="display: flex; align-items: center;">
                         <span color="#31333F" class="st-emotion-cache-6jwljf eyeqlp52" style="margin-right: 0rem;">
                             <span data-testid="stIconEmoji" aria-hidden="true" 
@@ -57,7 +56,7 @@ with st.sidebar:
     st.page_link("pages/page_5.py", label="媒体搜索", icon="🎥")
     st.page_link("pages/page_6.py", label="图片生成", icon="🎨")
     st.page_link("pages/page_7.py", label="聊天机器人", icon="💬")
-    custom_page_link("pages/page_8.py", label="游戏客服平台", icon="🤖")
+    custom_page_link("https://gbb-ai.streamlit.app/page_8", label="游戏客服平台", icon="🤖")
     st.page_link("pages/page_9.py", label="电商客服平台", icon="🤖")
     st.page_link("pages/page_10.py", label="Claude3.5聊天机器人", icon="💬")
     st.page_link("pages/page_11.py", label="Llama3.1聊天机器人", icon="💬")

@@ -32,7 +32,7 @@ def load_gif(gif_path):
     return f"data:image/gif;base64,{data_url}"
 
 # 加载GIF图片
-thinking_gif = load_gif("../rag-demo/pages/typing-dots.gif")
+thinking_gif = load_gif("https://storage.googleapis.com/ghackathon/typing-dots-40.gif")
 
 # Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])

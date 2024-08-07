@@ -57,7 +57,7 @@ with st.sidebar:
     st.page_link("pages/page_6.py", label="图片生成", icon="🎨")
     st.page_link("pages/page_7.py", label="聊天机器人", icon="💬")
     st.page_link("pages/page_8.py", label="游戏客服平台", icon="🤖")
-    custom_page_link("pages/page_9.py", label="电商客服平台", icon="🤖")
+    custom_page_link("/pages/page_9.py", label="电商客服平台", icon="🤖")
     st.page_link("pages/page_10.py", label="Claude3.5聊天机器人", icon="💬")
     st.page_link("pages/page_11.py", label="Llama3.1聊天机器人", icon="💬")
     st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP翻译门户", icon="🌎")

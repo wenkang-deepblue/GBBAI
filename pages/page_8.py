@@ -64,31 +64,31 @@ with st.sidebar:
     st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP翻译门户", icon="🌎")
     st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/gallery", label="GCP控制台 - Gemini", icon="🌎")
     st.page_link("https://pantheon.corp.google.com/gen-app-builder/engines", label="GCP控制台 - App Builder", icon="🌎")
-        st.text("")
-        st.subheader('', divider='rainbow')
-        st.text("")
-        st.markdown(
-                """
-        ## 关于
-        这是由:blue[Google Cloud Vertex AI]驱动的生成式AI平台以及企业级RAG搜索引擎
-        - [:cloud: Google Cloud Vertex AI](https://cloud.google.com/vertex-ai?hl=en)
+    st.text("")
+    st.subheader('', divider='rainbow')
+    st.text("")
+    st.markdown(
+            """
+    ## 关于
+    这是由:blue[Google Cloud Vertex AI]驱动的生成式AI平台以及企业级RAG搜索引擎
+    - [:cloud: Google Cloud Vertex AI](https://cloud.google.com/vertex-ai?hl=en)
 
-        """
-        )
-        st.text("")
-        st.text("")
-        st.text("")
-        st.text("")
-        st.text("")
-        left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
-        with cent_co:
-                st.write('© GBB')
-        left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])
-        with cent_co:
-            st.write(':grey[Designed & Developed by] :blue[李文康]')
-        left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
-        with cent_co:
-                st.write(':grey[Powered by] **Vertex AI**')
+    """
+    )
+    st.text("")
+    st.text("")
+    st.text("")
+    st.text("")
+    st.text("")
+    left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
+    with cent_co:
+            st.write('© GBB')
+    left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])
+    with cent_co:
+        st.write(':grey[Designed & Developed by] :blue[李文康]')
+    left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
+    with cent_co:
+            st.write(':grey[Powered by] **Vertex AI**')
 
 # Embed Dialogflow code within an HTML component
 components.html("""

@@ -43,13 +43,13 @@ with cent_co:
     st.subheader('', divider='rainbow')
     
 with st.sidebar:
-        left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
-        with cent_co:
-                st.image('https://storage.googleapis.com/ghackathon/image2.gif')
-        left_co, cent_co,last_co = st.columns([0.36,0.32,0.32])
-        with cent_co:
-                st.title(":blue[GBB] :rainbow[AI]")
-        st.page_link("homepage.py", label="主页", icon="🏠")
+    left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
+    with cent_co:
+            st.image('https://storage.googleapis.com/ghackathon/image2.gif')
+    left_co, cent_co,last_co = st.columns([0.36,0.32,0.32])
+    with cent_co:
+            st.title(":blue[GBB] :rainbow[AI]")
+    st.page_link("homepage.py", label="主页", icon="🏠")
     st.page_link("pages/page_1.py", label="文本生成", icon="📖")
     st.page_link("pages/page_2.py", label="视频理解", icon="🎞️")
     st.page_link("pages/page_3.py", label="文本翻译", icon="🇺🇳")

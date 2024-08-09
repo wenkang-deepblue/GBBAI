@@ -7,3 +7,4 @@ streamlit==1.34.0
 google.auth
 anthropic
 openai
+PyPDF2

@@ -223,7 +223,7 @@ def image_preview():
         else:
             st.warning("上传的文件类型不支持预览。")
             
-uploaded_file = st.file_uploader("上传图片或视频文件", type=['jpg', 'jpeg', 'png'], key=f"file_uploader_{st.session_state[f'{APP_ID}_file_key']}")
+uploaded_file = st.file_uploader("上传图片或视频文件", type=['jpg', 'jpeg', 'png'], key=f"file_uploader_{st.session_state[f'{APP_ID}_file_key']}", accept_multiple_files=True)
 
 # 创建一个用于预览的占位符
 preview_placeholder = st.empty()

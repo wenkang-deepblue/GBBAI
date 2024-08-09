@@ -20,7 +20,7 @@ creds = service_account.Credentials.from_service_account_info(
 auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
-# 初始化AnthropicVertex客户端
+# 初始化客户端
 client = AnthropicVertex(region="europe-west1", project_id="lwk-genai-test", credentials=creds)
 
 APP_ID = "claude_chat"
@@ -51,7 +51,7 @@ def reset_conversation():
     st.session_state[f'{APP_ID}_file_uploaded'] = False
     st.session_state[f'{APP_ID}_file_key'] += 1
 
-# Streamlit 应用界面
+# Streamlit应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
 with cent_co:
     st.title(":blue[GBB] :rainbow[AI]")
@@ -63,7 +63,7 @@ left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
 
-#继续streamlit sidebar界面
+#Sidebar界面
 with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
@@ -108,29 +108,28 @@ with st.sidebar:
         st.error("请选择或定义AI角色")
    
     st.text("")
-    # 添加"开始新的对话"按钮
+    
     col1, col2, col3 = st.columns([1,2,1])
     with col2:
         if st.button("开始新的对话", use_container_width=True):
             reset_conversation()
             st.experimental_rerun()
-        
-    # 保留原有的页面链接
+    
     st.page_link("homepage.py", label="主页", icon="🏠")
-    st.page_link("pages/page_0.py", label="文本生成", icon="📖")
-    st.page_link("pages/page_9.py", label="视频理解", icon="🎞️")
-    st.page_link("pages/page_13.py", label="文本翻译", icon="🇺🇳")
-    st.page_link("pages/page_2.py", label="RAG搜索", icon="🔍")
-    st.page_link("pages/page_3.py", label="媒体搜索", icon="🎥")
-    st.page_link("pages/page_16.py", label="图片生成", icon="🎨")
-    st.page_link("pages/page_18.py", label="聊天机器人", icon="💬")
-    st.page_link("pages/page_15.py", label="游戏客服平台", icon="🤖")
-    st.page_link("pages/page_21.py", label="电商客服平台", icon="🤖")
-    st.page_link("pages/page_19.py", label="Claude3.5聊天机器人", icon="💬")
-    st.page_link("pages/page_23.py", label="Llama3.1聊天机器人", icon="💬")
-    st.page_link("https://translationhub.cloud.google.com/portal/cbec99246ab9ab5?projectId=210890376426", label="GCP翻译门户", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/create/text?project=lwk-genai-test", label="GCP控制台 - Gemini", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/gen-app-builder/locations/global/engines/lwk-rag-search_1713579191717/preview/search?e=13803378&mods=dm_deploy_from_gcs&project=lwk-genai-test", label="GCP控制台 - RAG搜索", icon="🌎")
+    st.page_link("pages/page_1.py", label="文本生成", icon="📖")
+    st.page_link("pages/page_2.py", label="视频理解", icon="🎞️")
+    st.page_link("pages/page_3.py", label="文本翻译", icon="🇺🇳")
+    st.page_link("pages/page_4.py", label="RAG搜索", icon="🔍")
+    st.page_link("pages/page_5.py", label="媒体搜索", icon="🎥")
+    st.page_link("pages/page_6.py", label="图片生成", icon="🎨")
+    st.page_link("pages/page_7.py", label="聊天机器人", icon="💬")
+    st.page_link("pages/page_8.py", label="游戏客服平台", icon="🤖")
+    st.page_link("pages/page_9.py", label="电商客服平台", icon="🤖")
+    st.page_link("pages/page_10.py", label="Claude3.5聊天机器人", icon="💬")
+    st.page_link("pages/page_11.py", label="Llama3.1聊天机器人", icon="💬")
+    st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP翻译门户", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/gallery", label="GCP控制台 - Gemini", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/gen-app-builder/engines", label="GCP控制台 - App Builder", icon="🌎")
     st.text("")
     st.subheader('', divider='rainbow')
     st.text("")
@@ -144,7 +143,7 @@ with st.sidebar:
     with cent_co:
         st.write(':grey[Powered by] **Claude AI**')
         
-# 用于处理上传的文件
+# 处理上传的文件
 def process_uploaded_file(uploaded_file):
     if uploaded_file is not None:
         file_id = str(uuid.uuid4())

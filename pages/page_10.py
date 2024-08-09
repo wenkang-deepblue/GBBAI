@@ -7,8 +7,8 @@ import google.auth
 from google.oauth2 import service_account
 import google.auth.transport.requests
 from PIL import Image
-import requests
 import time
+import uuid
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 

@@ -22,15 +22,15 @@ creds = service_account.Credentials.from_service_account_info(
 auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
-# 初始化 Vertex AI
+# 初始化Vertex AI
 project_id = "lwk-genai-test"
 location = "us-central1"
 vertexai.init(project=project_id, location=location, credentials=creds)
 
-# 设置 OpenAI 客户端的 URL
+# 设置OpenAI客户端URL
 url = f"https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{project_id}/locations/{location}/endpoints/openapi"
 
-# 创建 OpenAI 客户端
+# 创建OpenAI客户端
 client = openai.OpenAI(
     base_url=url,         
     api_key=creds.token,
@@ -48,10 +48,9 @@ def load_gif(gif_url):
         st.error(f"无法加载GIF图像：HTTP状态码 {response.status_code}")
         return ""
 
-# 加载GIF图片
 thinking_gif = load_gif("https://storage.googleapis.com/ghackathon/typing-dots-40.gif")
 
-# Streamlit 应用界面
+# Streamlit应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
 with cent_co:
     st.title(":blue[GBB] :rainbow[AI]")
@@ -63,7 +62,7 @@ left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
 
-#继续streamlit sidebar界面
+#Sidebar界面
 with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
@@ -146,7 +145,7 @@ with st.sidebar:
     with cent_co:
         st.write(':grey[Powered by] **Vertex AI**')
 
-# LLaMA model
+#LLaMA model
 MODEL_ID = 'meta/llama3-405b-instruct-maas'
 
 def generate_text(messages):    
@@ -161,26 +160,20 @@ def generate_text(messages):
     # 获取消息内容
     content = response.choices[0].message.content
     
-    # 移除开头和结尾的"assistant"
     content = re.sub(r'^assistant\s*|\s*assistant$', '', content, flags=re.IGNORECASE)
     
-    # 保护代码块
     code_blocks = re.findall(r'```[\s\S]*?```', content)
     for i, block in enumerate(code_blocks):
         content = content.replace(block, f'___CODE_BLOCK_{i}___')
     
-    # 处理 \\n（真正的换行）
     content = content.replace('\\n', '\n')
     
-    # 处理普通的换行符，保留段落之间的换行，但合并段落内的多个换行
     content = re.sub(r'\n{2,}', '\n\n', content)  # 将多个连续换行减少为两个
     content = re.sub(r'(?<!\n)\n(?!\n)', ' ', content)  # 将单个换行替换为空格
     
-    # 恢复代码块
     for i, block in enumerate(code_blocks):
         content = content.replace(f'___CODE_BLOCK_{i}___', block)
     
-    # 返回处理后的消息内容
     return content.strip()
     
 # 初始化Streamlit应用
@@ -204,10 +197,8 @@ if prompt := st.chat_input():
         st.session_state[f"{APP_ID}_messages"].append({"role": "user", "content": prompt})
         st.chat_message("user").write(prompt)
         
-        # 创建一个空的占位符来显示GIF
         gif_placeholder = st.empty()
 
-        # 显示GIF，不包含任何文本
         gif_placeholder.markdown(
             f'<div style="display: flex; justify-content: center;">'
             f'<img src="{thinking_gif}" alt="" style="width:30px;">'
@@ -215,17 +206,14 @@ if prompt := st.chat_input():
             unsafe_allow_html=True
         )
 
-        # 生成AI响应
         response = generate_text(st.session_state[f"{APP_ID}_messages"])
 
-        # 移除GIF
         gif_placeholder.empty()
         
         parts = re.split(r'(```[\s\S]*?```)', response)
         with st.chat_message("assistant"):
             for part in parts:
                 if part.startswith('```') and part.endswith('```'):
-                    # 提取语言
                     language = part.split('\n')[0][3:].strip()
                     code = '\n'.join(part.split('\n')[1:-1])
                     st.code(code, language=language if language else None)

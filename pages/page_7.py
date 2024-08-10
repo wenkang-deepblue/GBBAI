@@ -5,9 +5,9 @@ from vertexai.generative_models import GenerativeModel, Part, Tool
 import vertexai.preview.generative_models as generative_models
 import io
 import uuid
-import google.auth
-from google.oauth2 import service_account
-import google.auth.transport.requests
+import streamlit.components.v1 as components
+import PyPDF2
+import time
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
@@ -24,8 +24,8 @@ vertexai.init(project="lwk-genai-test", location="us-central1", credentials=cred
 # 初始化会话状态
 if 'messages' not in st.session_state:
     st.session_state.messages = []
-if 'current_file' not in st.session_state:
-    st.session_state.current_file = None
+if 'current_files' not in st.session_state:
+    st.session_state.current_files = None
 if 'file_key' not in st.session_state:
     st.session_state.file_key = 0
 if 'file_uploaded' not in st.session_state:
@@ -34,6 +34,8 @@ if 'user_input' not in st.session_state:
     st.session_state.user_input = ""
 if 'need_api_call' not in st.session_state:
     st.session_state.need_api_call = False
+if 'uploaded_files' not in st.session_state:
+    st.session_state.uploaded_files = []
 
 def reset_conversation():
     st.session_state.messages = []
@@ -58,7 +60,7 @@ left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
     
-#继续streamlit sidebar界面
+#idebar界面
 with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
@@ -113,7 +115,7 @@ with st.sidebar:
         st.error("请选择或定义AI角色")
    
     st.text("")
-    # 添加"开始新的对话"按钮
+    
     col1, col2, col3 = st.columns([1,2,1])
     with col2:
         if st.button("开始新的对话", use_container_width=True):
@@ -121,20 +123,20 @@ with st.sidebar:
             st.experimental_rerun()
         
     st.page_link("homepage.py", label="主页", icon="🏠")
-    st.page_link("pages/page_1.py", label="文本生成", icon="📖")
-    st.page_link("pages/page_2.py", label="视频理解", icon="🎞️")
-    st.page_link("pages/page_3.py", label="文本翻译", icon="🇺🇳")
-    st.page_link("pages/page_4.py", label="RAG搜索", icon="🔍")
-    st.page_link("pages/page_5.py", label="媒体搜索", icon="🎥")
-    st.page_link("pages/page_6.py", label="图片生成", icon="🎨")
-    st.page_link("pages/page_7.py", label="聊天机器人", icon="💬")
-    st.page_link("pages/page_8.py", label="游戏客服平台", icon="🤖")
-    st.page_link("pages/page_9.py", label="电商客服平台", icon="🤖")
-    st.page_link("pages/page_10.py", label="Claude3.5聊天机器人", icon="💬")
-    st.page_link("pages/page_11.py", label="Llama3.1聊天机器人", icon="💬")
-    st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP翻译门户", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/gallery", label="GCP控制台 - Gemini", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/gen-app-builder/engines", label="GCP控制台 - App Builder", icon="🌎")
+    st.page_link("pages/page_0.py", label="文本生成", icon="📖")
+    st.page_link("pages/page_9.py", label="视频理解", icon="🎞️")
+    st.page_link("pages/page_13.py", label="文本翻译", icon="🇺🇳")
+    st.page_link("pages/page_2.py", label="RAG搜索", icon="🔍")
+    st.page_link("pages/page_3.py", label="媒体搜索", icon="🎥")
+    st.page_link("pages/page_16.py", label="图片生成", icon="🎨")
+    st.page_link("pages/page_18.py", label="聊天机器人", icon="💬")
+    st.page_link("pages/page_15.py", label="游戏客服平台", icon="🤖")
+    st.page_link("pages/page_21.py", label="电商客服平台", icon="🤖")
+    st.page_link("pages/page_19.py", label="Claude3.5聊天机器人", icon="💬")
+    st.page_link("pages/page_23.py", label="Llama3.1聊天机器人", icon="💬")
+    st.page_link("https://translationhub.cloud.google.com/portal/cbec99246ab9ab5?projectId=210890376426", label="GCP翻译门户", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/create/text?project=lwk-genai-test", label="GCP控制台 - Gemini", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/gen-app-builder/locations/global/engines/lwk-rag-search_1713579191717/preview/search?e=13803378&mods=dm_deploy_from_gcs&project=lwk-genai-test", label="GCP控制台 - RAG搜索", icon="🌎")
     st.text("")
     st.subheader('', divider='rainbow')
     st.text("")
@@ -148,37 +150,65 @@ with st.sidebar:
     with cent_co:
         st.write(':grey[Powered by] **Vertex AI**')
         
-# 用于处理上传的文件
-def process_uploaded_file(uploaded_file):
-    if uploaded_file is not None:
-        file_id = str(uuid.uuid4())
-        # 读取文件内容
-        file_content = uploaded_file.getvalue()
-        # 获取MIME类型
-        mime_type = uploaded_file.type
-        # 将文件内容编码为base64
-        encoded_content = base64.b64encode(file_content).decode('utf-8')
+# 处理上传的文件
+def process_uploaded_files(uploaded_files):
+    if uploaded_files:
+        new_files = []
+        for uploaded_file in uploaded_files:
+            file_id = str(uuid.uuid4())
+            file_content = uploaded_file.getvalue()
+            mime_type = uploaded_file.type
+            encoded_content = base64.b64encode(file_content).decode('utf-8')
+            
+            extracted_text = ""
+            if mime_type == 'application/pdf':
+                pdf_reader = PyPDF2.PdfReader(io.BytesIO(file_content))
+                extracted_text = "\n".join([page.extract_text() for page in pdf_reader.pages])
+            elif mime_type == 'text/plain':
+                extracted_text = file_content.decode('utf-8')
+            else:
+                extracted_text = "此文件类型不支持文本提取。"
+            
+            file_info = {
+                'id': file_id,
+                'mime_type': mime_type,
+                'data': encoded_content,
+                'raw_data': file_content,
+                'extracted_text': extracted_text,
+                'timestamp': time.time()
+            }
+            
+            new_files.append(file_info)
         
-        st.session_state.current_file = {
-            'id': file_id,
-            'mime_type': mime_type,
-            'data': encoded_content,
-            'raw_data': file_content
-        }
+        st.session_state.uploaded_files.extend(new_files)
+        st.session_state.current_files = new_files
         st.session_state.file_uploaded = True
 
-def clear_file():
-    st.session_state.current_file = None
+def clear_files():
+    st.session_state.current_files = []
     st.session_state.file_uploaded = False
     st.session_state.file_key += 1
  
-def generate_text(prompt, chat, file_data=None):
+def generate_text(prompt, chat, messages):
     message_parts = [prompt]
     
-    # 如果有文件数据,添加到消息中
-    if file_data:
-        message_parts.append(Part.from_data(mime_type=file_data['mime_type'], data=file_data['data']))
-            
+    for msg in messages:
+        if isinstance(msg, dict):
+            if "content" in msg:
+                message_parts.append(Part.from_text(msg["content"]))
+            if "files" in msg:
+                for file_data in msg["files"]:
+                    if isinstance(file_data, dict):
+                        mime_type = file_data.get('mime_type')
+                        if mime_type in ['application/pdf', 'text/plain']:
+                            extracted_text = file_data.get('extracted_text', '')
+                            if extracted_text:
+                                message_parts.append(Part.from_text(f"File content: {extracted_text}"))
+                        elif mime_type and (mime_type.startswith('image/') or mime_type.startswith('video/')):
+                            data = file_data.get('data')
+                            if data:
+                                message_parts.append(Part.from_data(mime_type=mime_type, data=data))
+    
     response = chat.send_message(
         message_parts,
         generation_config=generation_config,
@@ -214,53 +244,58 @@ if system_instruction_option and (system_instruction_option != st.session_state.
     )
     st.session_state.chat = st.session_state.model.start_chat()
 
-# 创建一个容器来放置所有的对话内容
+# 创建一个容器放置所有对话内容
 chat_container = st.container()
 
 # 在容器中显示聊天历史和新消息
 with chat_container:
     # 显示聊天历史
-    for msg in st.session_state.messages:
+    for idx, msg in enumerate(st.session_state.messages):
         st.chat_message(msg["role"]).write(msg["content"])
-        if "file" in msg:
-            file_data = msg["file"]
-            if 'image' in file_data['mime_type']:
-                st.image(file_data['raw_data'])
-            elif 'video' in file_data['mime_type']:
-                st.video(file_data['raw_data'])
+        if "files" in msg:
+            for file_data in msg["files"]:
+                if 'image' in file_data['mime_type']:
+                    st.image(file_data['raw_data'])
+                elif 'video' in file_data['mime_type']:
+                    st.video(file_data['raw_data'])
+                elif file_data['mime_type'] in ['application/pdf', 'text/plain']:
+                    st.text_area("文件内容预览", file_data['preview'], height=200, key=f"history_{idx}_{file_data['id']}")
 
     # 处理新的API调用和响应
     if st.session_state.need_api_call:
         with st.chat_message("assistant"):
             thinking_placeholder = st.empty()
             thinking_placeholder.image("https://storage.googleapis.com/ghackathon/typing-dots-40.gif")
-            response = generate_text(st.session_state.messages[-1]["content"], st.session_state.chat, st.session_state.current_file if st.session_state.file_uploaded else None)
+            last_message = st.session_state.messages[-1]
+            response = generate_text(last_message.get("content", ""), st.session_state.chat, st.session_state.messages)
             assistant_msg = response.candidates[0].content.parts[0].text
             thinking_placeholder.empty()
             st.write(assistant_msg)
             st.session_state.messages.append({"role": "assistant", "content": assistant_msg})
             st.session_state.need_api_call = False
             if st.session_state.file_uploaded:
-                clear_file()
+                clear_files()
             
-uploaded_file = st.file_uploader("上传图片或视频文件", type=['jpg', 'jpeg', 'png', 'mp4'], key=f"file_uploader_{st.session_state.file_key}")
+uploaded_files = st.file_uploader("上传图片、视频、PDF或TXT文件", type=['jpg', 'jpeg', 'png', 'mp4', 'pdf', 'txt'], accept_multiple_files=True, key=f"file_uploader_{st.session_state.file_key}")
 
-if uploaded_file is not None:
-    process_uploaded_file(uploaded_file)
+if uploaded_files:
+    process_uploaded_files(uploaded_files)
 
 # 显示当前上传的文件
-if st.session_state.current_file:
-    file_data = st.session_state.current_file
-    if 'image' in file_data['mime_type']:
-        col1, col2, col3 = st.columns([1,2,1])
-        with col2:  # 在中间列中显示图片
-            st.image(file_data['raw_data'], caption='当前上传的图片', use_column_width=True)
-    elif 'video' in file_data['mime_type']:
-        col1, col2, col3 = st.columns([1,2,1])
-        with col2:
-            st.video(file_data['raw_data'], start_time=0)
-    else:
-        st.warning("上传的文件类型不支持预览。")
+if st.session_state.current_files:
+    for file_data in st.session_state.current_files:
+        if 'image' in file_data['mime_type']:
+            col1, col2, col3 = st.columns([1,2,1])
+            with col2:
+                st.image(file_data['raw_data'], caption='上传的图片', use_column_width=True)
+        elif 'video' in file_data['mime_type']:
+            col1, col2, col3 = st.columns([1,2,1])
+            with col2:
+                st.video(file_data['raw_data'], start_time=0)
+        elif file_data['mime_type'] in ['application/pdf', 'text/plain']:
+            st.text_area("文件内容预览", file_data.get('extracted_text', '无法提取文本内容'), height=200, key=f"preview_{file_data['id']}")
+        else:
+            st.warning("上传的文件类型不支持预览。")
 
 # 聊天输入
 user_input = st.chat_input("输入您的消息")
@@ -270,10 +305,20 @@ if user_input:
         st.error("👈请定义一种角色：在菜单中选择或者自定义")
         st.stop()
     else:
-        user_message = {"role": "user", "content": user_input}
-        if st.session_state.current_file and st.session_state.file_uploaded:
-            user_message["file"] = st.session_state.current_file
+        user_message = {"role": "user", "content": user_input or ""}
+        if st.session_state.current_files:
+            user_message["files"] = []
+            for file_data in st.session_state.current_files:
+                user_message["files"].append({
+                    "id": file_data['id'],
+                    "mime_type": file_data['mime_type'],
+                    "extracted_text": file_data.get('extracted_text', ''),
+                    "preview": file_data['extracted_text'] if file_data['mime_type'] in ['application/pdf', 'text/plain'] else None,
+                    "raw_data": file_data['raw_data'] if 'image' in file_data['mime_type'] or 'video' in file_data['mime_type'] else None,
+                    "data": file_data['data']
+                })
 
         st.session_state.messages.append(user_message)
         st.session_state.need_api_call = True
+        st.session_state.current_files = None
         st.experimental_rerun()

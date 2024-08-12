@@ -73,7 +73,14 @@ with st.sidebar:
         st.write('© GBB')
     left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])
     with cent_co:
-        st.write(':grey[Designed & Developed by] :blue[李文康]')
+        st.markdown(
+    '<p style="text-align: center;">'
+    '<span style="color: grey;">Designed & Developed by</span> '
+    '<a href="https://moma.corp.google.com/person/wenkangli?q=gcp%20genai%20demo%20in%20chinese" '
+    'style="color: #185ABC; text-decoration: underline;" target="_blank">李文康</a>'
+    '</p>',
+    unsafe_allow_html=True
+)
     left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
     with cent_co:
         st.write(':grey[Powered by] **Vertex AI**')

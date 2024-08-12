@@ -121,6 +121,7 @@ with st.sidebar:
     st.page_link("pages/page_1.py", label="文本生成", icon="📖")
     st.page_link("pages/page_2.py", label="视频理解", icon="🎞️")
     st.page_link("pages/page_3.py", label="文本翻译", icon="🇺🇳")
+    st.page_link("pages/page_24.py", label="旅游顾问", icon="✈️")
     st.page_link("pages/page_4.py", label="RAG搜索", icon="🔍")
     st.page_link("pages/page_5.py", label="媒体搜索", icon="🎥")
     st.page_link("pages/page_6.py", label="图片生成", icon="🎨")

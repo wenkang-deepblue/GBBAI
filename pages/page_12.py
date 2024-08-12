@@ -63,7 +63,7 @@ def reset_conversation():
         st.session_state.pop(f'{APP_ID}_chat', None)
         
 # Streamlit 应用界面
-left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
+left_co, cent_co,last_co = st.columns([0.45,0.4,0.15])
 with cent_co:
     st.title(":blue[GBB] :rainbow[AI]")
 left_co, cent_co,last_co = st.columns([0.44,0.36,0.3])

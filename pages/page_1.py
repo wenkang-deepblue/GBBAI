@@ -85,7 +85,7 @@ with st.sidebar:
     '<p style="text-align: center;">'
     '<span style="color: grey;">Designed & Developed by</span> '
     '<a href="https://moma.corp.google.com/person/wenkangli?q=gcp%20genai%20demo%20in%20chinese" '
-    'style="color: #185ABC; text-decoration: underline;" target="_blank">李文康</a>'
+    'style="color: #185ABC; text-decoration: underline;" target="_blank">Wenkang Li</a>'
     '</p>',
     unsafe_allow_html=True
 )

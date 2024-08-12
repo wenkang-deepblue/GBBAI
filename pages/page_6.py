@@ -46,11 +46,11 @@ with st.sidebar:
     ("1:1", "9:16", "16:9", "3:4", "4:3"),
     index=None,
     placeholder="请选择宽高比")
-    st.subheader('',divider='rainbow')
     st.page_link("homepage.py", label="主页", icon="🏠")
     st.page_link("pages/page_1.py", label="文本生成", icon="📖")
     st.page_link("pages/page_2.py", label="视频理解", icon="🎞️")
     st.page_link("pages/page_3.py", label="文本翻译", icon="🇺🇳")
+    st.page_link("pages/page_12.py", label="旅游顾问", icon="✈️")
     st.page_link("pages/page_4.py", label="RAG搜索", icon="🔍")
     st.page_link("pages/page_5.py", label="媒体搜索", icon="🎥")
     st.page_link("pages/page_6.py", label="图片生成", icon="🎨")

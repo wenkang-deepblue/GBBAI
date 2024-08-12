@@ -12,6 +12,16 @@ import time
 import json
 import logging
 
+credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
+
+creds = service_account.Credentials.from_service_account_info(
+    credentials_info,
+    scopes=["https://www.googleapis.com/auth/cloud-platform"]
+)
+
+auth_req = google.auth.transport.requests.Request()
+creds.refresh(auth_req)
+
 APP_ID = "travel_advisor"
 
 # 初始化Vertex AI

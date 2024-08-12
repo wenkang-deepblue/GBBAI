@@ -22,10 +22,9 @@ creds = service_account.Credentials.from_service_account_info(
 auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
-APP_ID = "travel_advisor"
+vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
 
-# 初始化Vertex AI
-vertexai.init(project="lwk-genai-test", location="us-central1")
+APP_ID = "travel_advisor"
 
 # 页面配置
 st.set_page_config(layout="wide", page_title="GBB AI旅游助手")

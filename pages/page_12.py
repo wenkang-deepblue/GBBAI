@@ -10,6 +10,9 @@ import PyPDF2
 import time
 import json
 import logging
+import google.auth
+from google.oauth2 import service_account
+import google.auth.transport.requests
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 

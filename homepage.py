@@ -5,19 +5,19 @@ import google.auth.transport.requests
 
 
 st.set_page_config(
-    page_title="GBB AI",
+    page_title="GCP GenAI",
     page_icon="👋",
 )
 
 st.image("https://storage.googleapis.com/ghackathon/galaxy%20banner%20with%20logo.png")
 
 
-st.write("# 您好！欢迎使用 :blue[GBB] :rainbow[AI] !")
+st.write("# 您好！欢迎使用 :blue[GCP GEN]:rainbow[AI] !")
 
 
 st.markdown(
     """
-    GBB AI项目是利用:blue[Google Cloud Vertex AI]平台搭建的GenAI系统，其目的是演示Vertex AI各个模块可为企业实现的内容生成，媒体理解，RAG检索增强生成以及媒体搜索等功能。该项目所用到的Vertex AI模块包括：:orange[Gemini 1.5 Pro多模态模型，Agent Builder - Vertex AI Search，Imagen，DialogFlow]等等。Google Cloud中国销售及架构师团队愿意全力协助您利用Google强大的AI基础能力，以及GCP全面的AI生态及技术架构，搭建企业级的AI应用，帮助您的企业快速迭代，灵活开发，降低成本，提高效率。
+    GCP GenAI项目是利用:blue[Google Cloud Vertex AI]平台搭建的GenAI系统，其目的是演示Vertex AI各个模块可为企业实现的内容生成，媒体理解，RAG检索增强生成以及媒体搜索等功能。该项目所用到的Vertex AI模块包括：:orange[Gemini 1.5 Pro多模态模型，Agent Builder - Vertex AI Search，Imagen，DialogFlow]等等。Google Cloud中国销售及架构师团队愿意全力协助您利用Google强大的AI基础能力，以及GCP全面的AI生态及技术架构，搭建企业级的AI应用，帮助您的企业快速迭代，灵活开发，降低成本，提高效率。
     
     
     
@@ -38,7 +38,7 @@ with st.sidebar:
         st.image('https://storage.googleapis.com/ghackathon/image2.gif')
     left_co, cent_co,last_co = st.columns([0.36,0.32,0.32])
     with cent_co:
-        st.title(":blue[GBB] :rainbow[AI]")
+        st.title(":blue[GCP Gen]:rainbow[AI]")
     st.page_link("homepage.py", label="主页", icon="🏠")
     st.page_link("pages/page_1.py", label="文本生成", icon="📖")
     st.page_link("pages/page_2.py", label="视频理解", icon="🎞️")
@@ -73,7 +73,7 @@ with st.sidebar:
     st.text("")
     left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
     with cent_co:
-        st.write('© GBB')
+        st.write('© LWK')
     left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])
     with cent_co:
         st.markdown(

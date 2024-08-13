@@ -197,7 +197,7 @@ if system_instruction_option and system_instruction_option != st.session_state[f
 for msg in st.session_state.get(f"{APP_ID}_messages", [])[1:]:
     st.chat_message(msg["role"]).write(msg["content"])
 
-if prompt := st.chat_input("输入您的消息"):
+if prompt := st.chat_input():
     if not st.session_state.get(f"{APP_ID}_current_role"):
         st.error("👈请定义一种角色：在菜单中选择或者自定义")
         st.stop()

@@ -12,7 +12,7 @@ st.set_page_config(
 st.image("https://storage.googleapis.com/ghackathon/galaxy%20banner%20with%20logo.png")
 
 
-st.write("# 您好！欢迎使用 :blue[GCP GEN]:rainbow[AI] !")
+st.write("# 您好！欢迎使用 :blue[GCP Gen]:rainbow[AI] !")
 
 
 st.markdown(

@@ -54,7 +54,7 @@ def reset_conversation():
 # Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
 with cent_co:
-    st.title(":blue[GBB] :rainbow[AI]")
+    st.title(":blue[GCP Gen]:rainbow[AI]")
 left_co, cent_co,last_co = st.columns([0.44,0.36,0.3])
 with cent_co:
     st.caption(":blue[_企业级聊天机器人_]")
@@ -146,7 +146,7 @@ with st.sidebar:
     st.text("")
     left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
     with cent_co:
-        st.write('© GBB')
+        st.write('© LWK')
     left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])
     with cent_co:
         st.markdown(

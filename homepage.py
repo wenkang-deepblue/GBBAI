@@ -1,6 +1,6 @@
 import streamlit as st
 
-#this will showed on the top of user's
+
 st.set_page_config(
     page_title="GBB AI",
     page_icon="👋",

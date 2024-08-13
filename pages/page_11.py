@@ -151,7 +151,7 @@ with st.sidebar:
 )
     left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
     with cent_co:
-        st.write(':grey[Powered by] **Vertex AI**')
+        st.write(':grey[Powered by] **Llama on Vertex AI**')
 
 #LLaMA model
 MODEL_ID = 'meta/llama3-405b-instruct-maas'

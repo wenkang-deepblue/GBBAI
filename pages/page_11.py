@@ -53,7 +53,7 @@ thinking_gif = load_gif("https://storage.googleapis.com/ghackathon/typing-dots-4
 # Streamlit应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
 with cent_co:
-    st.title(":blue[GBB] :rainbow[AI]")
+    st.title(":blue[GCP Gen]:rainbow[AI]")
 left_co, cent_co,last_co = st.columns([0.43,0.37,0.3])
 with cent_co:
     st.caption(":blue[_Llama3.1聊天机器人_]")
@@ -138,7 +138,7 @@ with st.sidebar:
     st.text("")
     left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
     with cent_co:
-        st.write('© GBB')
+        st.write('© LWK')
     left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])
     with cent_co:
         st.markdown(

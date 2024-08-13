@@ -1,4 +1,7 @@
 import streamlit as st
+import google.auth
+from google.oauth2 import service_account
+import google.auth.transport.requests
 
 
 st.set_page_config(

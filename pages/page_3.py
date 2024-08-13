@@ -22,7 +22,7 @@ vertexai.init(project="lwk-genai-test", location="us-central1", credentials=cred
 # Streamlit 应用界面
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
 with cent_co:
-    st.title(":blue[GBB] :rainbow[AI]")
+    st.title(":blue[GCP Gen]:rainbow[AI]")
 left_co, cent_co,last_co = st.columns([0.41,0.31,0.28])
 with cent_co:
     st.caption(":blue[_企业级翻译平台_]")

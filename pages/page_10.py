@@ -149,7 +149,7 @@ with st.sidebar:
 )
     left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
     with cent_co:
-        st.write(':grey[Powered by] **Claude on GCP**')
+        st.write(':grey[Powered by] **Claude on Vertex AI**')
         
 # 处理上传的文件
 def process_uploaded_file(uploaded_file):

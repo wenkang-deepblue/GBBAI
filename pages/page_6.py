@@ -39,7 +39,7 @@ with st.sidebar:
         st.image('https://storage.googleapis.com/ghackathon/image2.gif')
     left_co, cent_co,last_co = st.columns([0.36,0.32,0.32])
     with cent_co:
-        st.title(":blue[GBB] :rainbow[AI]")
+        st.title(":blue[GCP Gen]:rainbow[AI]")
     number_of_images = st.slider("生成图片数量", min_value=1, max_value=4, value=4)
     aspect_ratio = st.selectbox(
     "请选择图片比例：",

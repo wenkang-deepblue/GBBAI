@@ -129,9 +129,9 @@ if st.session_state["user"] is None:
         
             st.page_link("pages/terms_of_service.py", label="用户服务协议", icon="📄")
             st.page_link("pages/privacy_policy.py", label="隐私政策", icon="🔒")
-            else:
-                st.write("# 欢迎使用 GBB AI")
-                st.write("请登录以访问完整功能。")
+        else:
+            st.write("# 欢迎使用 GBB AI")
+            st.write("请登录以访问完整功能。")
 
 if __name__ == "__main__":
     main()

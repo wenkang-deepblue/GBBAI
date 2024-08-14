@@ -4,7 +4,7 @@ st.page_link("homepage.py", label="返回首页", icon="🏠")
 
 left_co, cent_co,last_co = st.columns([0.15,0.7,0.15])
 with cent_co:
-    st.title("GCP GenAI用户服务条款")
+    st.title("GCP GenAI用户服务协议")
 
 left_co, cent_co,last_co = st.columns([0.35,0.5,0.15])
 with cent_co:

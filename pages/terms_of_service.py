@@ -1,5 +1,7 @@
 import streamlit as st
 
+st.page_link("homepage.py", label="返回首页", icon="🏠")
+
 st.title("GCP GenAI应用用户服务条款")
 
 st.markdown("""

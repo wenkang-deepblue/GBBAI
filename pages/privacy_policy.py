@@ -2,7 +2,9 @@ import streamlit as st
 
 st.page_link("homepage.py", label="返回首页", icon="🏠")
 
-st.title("GCP GenAI应用隐私政策")
+left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
+    with cent_co:
+      st.title("GCP GenAI应用隐私政策")
 
 st.markdown("""
 生效日期: 2024年8月1日

@@ -77,13 +77,13 @@ with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])
     with cent_co:
         st.markdown(
-        '<p style="text-align: center;">'
-        '<span style="color: grey;">Designed & Developed by</span> '
-        f'<a href="{st.secrets["developer_profile_link"]}" '
-        'style="color: #185ABC; text-decoration: underline;" target="_blank">Wenkang Li</a>'
-        '</p>',
-        unsafe_allow_html=True
-    )
+    '<p style="text-align: center;">'
+    '<span style="color: grey;">Designed & Developed by</span> '
+    f'<a href="{st.secrets["developer_profile_link"]}" '
+    'style="color: #185ABC; text-decoration: underline;" target="_blank">{st.secrets["developer_name"]}</a>'
+    '</p>',
+    unsafe_allow_html=True
+)
     left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
     with cent_co:
         st.write(':grey[Powered by] **Vertex AI**')

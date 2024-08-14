@@ -4,7 +4,7 @@ st.page_link("homepage.py", label="返回首页", icon="🏠")
 
 left_co, cent_co,last_co = st.columns([0.15,0.7,0.15])
 with cent_co:
-    st.title("GCP GenAI应用隐私政策")
+    st.title("GCP GenAI隐私政策")
 
 left_co, cent_co,last_co = st.columns([0.35,0.5,0.15])
 with cent_co:
@@ -17,7 +17,7 @@ st.markdown("""
 
 
 
-本隐私政策描述了GCP GenAI 应用（以下简称"本应用"）如何收集、使用和保护您的个人信息。我们重视您的隐私，并致力于保护您的个人数据。请仔细阅读本政策，了解我们的做法。
+本隐私政策描述了GCP GenAI应用（以下简称"本应用"）如何收集、使用和保护您的个人信息。我们重视您的隐私，并致力于保护您的个人数据。请仔细阅读本政策，了解我们的做法。
 
 ## 1. 信息收集
 

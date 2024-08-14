@@ -2,7 +2,7 @@ import streamlit as st
 
 st.page_link("homepage.py", label="返回首页", icon="🏠")
 
-left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
+left_co, cent_co,last_co = st.columns([0.27,0.4,0.33])
 with cent_co:
     st.title("GCP GenAI应用隐私政策")
 

@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 st.set_page_config(page_title="GBB AI", page_icon="👋")
 
 # Google客户端ID（替换为您的实际ID）
-GOOGLE_CLIENT_ID = "210890376426-ve5c6tg5sgq1pcm0p66dfc88g199vet4.apps.googleusercontent.com"
+GOOGLE_CLIENT_ID = "210890376426-vmftp13cdmbmd723rcht9916s9eaf4rs.apps.googleusercontent.com"
 
 def verify_google_token(token):
     try:

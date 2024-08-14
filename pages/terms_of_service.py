@@ -2,7 +2,15 @@ import streamlit as st
 
 st.page_link("homepage.py", label="返回首页", icon="🏠")
 
-st.title("GCP GenAI应用用户服务条款")
+left_co, cent_co,last_co = st.columns([0.15,0.7,0.15])
+with cent_co:
+    st.title("GCP GenAI用户服务条款")
+
+left_co, cent_co,last_co = st.columns([0.35,0.5,0.15])
+with cent_co:
+    st.write("生效日期: 2024年8月1日")
+
+st.text("")
 
 st.markdown("""
 生效日期: 2024年8月1日

@@ -10,6 +10,8 @@ left_co, cent_co,last_co = st.columns([0.35,0.5,0.15])
 with cent_co:
     st.write("生效日期: 2024年8月1日")
 
+st.text("")
+
 st.markdown("""
 
 

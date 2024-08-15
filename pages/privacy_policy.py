@@ -58,7 +58,7 @@ left_co, cent_co,last_co = st.columns([0.23,0.7,0.07])
 with cent_co:
     st.title("GCP GenAI隐私政策")
 
-left_co, cent_co,last_co = st.columns([0.35,0.5,0.15])
+left_co, cent_co,last_co = st.columns([0.36,0.5,0.14])
 with cent_co:
     st.write("生效日期: 2024年8月1日")
 

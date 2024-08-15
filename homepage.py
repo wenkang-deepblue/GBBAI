@@ -70,7 +70,7 @@ with st.sidebar:
     st.text("")
     st.text("")
     st.text("")
-    left_co, cent_co,last_co = st.columns([0.43,0.31,0.26])
+    left_co, cent_co,last_co = st.columns([0.42,0.31,0.27])
     with cent_co:
         st.write('© LWK')
     left_co, cent_co,last_co = st.columns([0.09,0.83,0.08])

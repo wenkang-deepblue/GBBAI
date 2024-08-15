@@ -8,3 +8,5 @@ google.auth
 anthropic
 openai
 PyPDF2
+google-auth-oauthlib
+google-auth-httplib2

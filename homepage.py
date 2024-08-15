@@ -67,9 +67,6 @@ with st.sidebar:
     st.page_link("https://cloud.google.com/vertex-ai?hl=en", label="Google Cloud Vertex AI", icon="☁️")
     st.text("")
     st.text("")
-    st.text("")
-    st.text("")
-    st.text("")
     left_co, cent_co,last_co = st.columns([0.41,0.31,0.28])
     with cent_co:
         st.write('© LWK')

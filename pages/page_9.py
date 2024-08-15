@@ -68,13 +68,12 @@ with st.sidebar:
     st.subheader('', divider='rainbow')
     st.text("")
     st.markdown(
-            """
+        """
     ## 关于
     这是由:blue[Google Cloud Vertex AI]驱动的生成式AI平台以及企业级RAG搜索引擎
-    - [:cloud: Google Cloud Vertex AI](https://cloud.google.com/vertex-ai?hl=en)
-
-    """
+        """
     )
+    st.page_link("https://cloud.google.com/vertex-ai?hl=en", label="Google Cloud Vertex AI", icon="☁️")
     
     left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
     with cent_co:

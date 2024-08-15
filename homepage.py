@@ -1,13 +1,21 @@
 import streamlit as st
 from google.oauth2 import id_token
 from google.auth.transport import requests
-import streamlit.components.v1 as components
-import os
+from google_auth_oauthlib.flow import Flow
+from google.oauth2.credentials import Credentials
 
 st.set_page_config(page_title="GBB AI", page_icon="👋")
 
 # Google客户端ID（替换为您的实际ID）
 GOOGLE_CLIENT_ID = "210890376426-vmftp13cdmbmd723rcht9916s9eaf4rs.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = st.secrets["GOOGLE_CLIENT_SECRET"]
+REDIRECT_URI = "https://gbb-ai.streamlit.app/"
+
+flow = Flow.from_client_secrets_file(
+    "client_secret_210890376426-vmftp13cdmbmd723rcht9916s9eaf4rs.apps.googleusercontent.com.json",  # 将 client_secret.json 文件放在与您的 Streamlit 应用程序相同的目录中
+    scopes=["openid", "email", "profile"],
+    redirect_uri=REDIRECT_URI,
+)
 
 def verify_google_token(token):
     try:
@@ -26,43 +34,33 @@ def is_valid_email_domain(email):
 if 'user' not in st.session_state:
     st.session_state["user"] = None
 
-def main():  
-    # 显示Google登录按钮
-    st.components.v1.html(
-        f"""
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-        <div id="g_id_onload"
-             data-client_id="{GOOGLE_CLIENT_ID}"
-             data-callback="handleCredentialResponse">
-        </div>
-        <div class="g_id_signin" data-type="standard"></div>
-        <script>
-        function handleCredentialResponse(response) {{
-            const credential = response.credential;
-            window.parent.postMessage({{type: "GOOGLE_AUTH", credential: credential}}, "*");
-        }}
-        </script>
-        """,
-        height=50
-    )
+def main():
+    if st.session_state["user"] is None:
+        st.write("# 欢迎使用 GBB AI")
+        st.write("请使用您的 Google 帐户登录以继续。")
+        
+        authorization_url, state = flow.authorization_url()
+        
+        if st.button("使用 Google 登录"):
+            st.experimental_set_query_params(state=state)
+            st.experimental_rerun()
+        
+        if "code" in st.experimental_get_query_params():
+            code = st.experimental_get_query_params()["code"][0]
+            flow.fetch_token(code=code)
+            credentials = flow.credentials
+            token = credentials.token
 
-    # 处理从JavaScript接收到的消息
-    # 处理从JavaScript接收到的消息
-if st.session_state["user"] is None:
-    message = st.query_params.get("message")
-    if message and message == "GOOGLE_AUTH":
-        credential = st.query_params.get("credential")
-        if credential:
-            user_info = verify_google_token(credential)
+            user_info = verify_google_token(token)
             if user_info and is_valid_email_domain(user_info['email']):
                 st.session_state["user"] = user_info
+                st.experimental_set_query_params()  # 清除 URL 中的 code 参数
                 st.experimental_rerun()
             elif user_info:
                 st.error('请使用@google.com邮箱登录')
             else:
                 st.error('登录验证失败。')
-
-    if st.session_state["user"]:
+    else:
         st.image("../rag-demo/pdf/galaxy banner with logo.png")
         st.write(f"# 您好，{st.session_state['user']['email']}！欢迎使用 :blue[GBB] :rainbow[AI] !")
         st.markdown(
@@ -114,25 +112,13 @@ if st.session_state["user"] is None:
             left_co, cent_co, last_co = st.columns([0.39, 0.31, 0.30])
             with cent_co:
                 st.write('© GBB')
-            left_co, cent_co, last_co = st.columns([0.09, 0.83, 0.08])
-            with cent_co:
-                st.markdown(
-                f'<p style="text-align: center;">'
-                f'<span style="color: grey;">Designed & Developed by</span> '
-                f'<a href="{st.secrets["developer_profile_link"]}" '
-                f'style="color: #185ABC; text-decoration: underline;" target="_blank">{st.secrets["developer_name"]}</a>'
-                f'</p>',
-                unsafe_allow_html=True
-            )
+            
             left_co, cent_co,last_co = st.columns([0.22,0.6,0.18])
             with cent_co:
                 st.write(':grey[Powered by] **Vertex AI**')
         
             st.page_link("pages/terms_of_service.py", label="用户服务协议", icon="📄")
             st.page_link("pages/privacy_policy.py", label="隐私政策", icon="🔒")
-    else:
-        st.write("# 欢迎使用 GBB AI")
-        st.write("请登录以访问完整功能。")
 
 if __name__ == "__main__":
     main()

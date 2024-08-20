@@ -8,6 +8,26 @@ from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
 import json
 import logging
+from auth import login, callback, logout
+
+if "code" in st.query_params:
+    callback()
+
+if not login():
+    st.stop()
+
+with st.sidebar:
+    st.markdown(f"""
+        <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; 
+                    padding: 10px; border-radius: 0.25rem; text-align: center; margin-bottom: 10px;">
+            <p style="margin-bottom: 0;">欢迎, {st.session_state.user_email}!</p>
+        </div>
+    """, unsafe_allow_html=True)
+    left_co, cent_co,last_co = st.columns([0.35,0.33,0.32])
+    with cent_co:
+        if st.button("log out"):
+            logout()
+
 
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 

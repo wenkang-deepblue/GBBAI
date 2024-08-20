@@ -4,8 +4,26 @@ import google.auth
 from google.oauth2 import service_account
 import google.auth.transport.requests
 import json
+from auth import login, callback, logout
 
-# Get the credentials from the Service Account key
+if "code" in st.query_params:
+    callback()
+
+if not login():
+    st.stop()
+
+with st.sidebar:
+    st.markdown(f"""
+        <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; 
+                    padding: 10px; border-radius: 0.25rem; text-align: center; margin-bottom: 10px;">
+            <p style="margin-bottom: 0;">欢迎, {st.session_state.user_email}!</p>
+        </div>
+    """, unsafe_allow_html=True)
+    left_co, cent_co,last_co = st.columns([0.35,0.33,0.32])
+    with cent_co:
+        if st.button("log out"):
+            logout()
+            
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
 creds = service_account.Credentials.from_service_account_info(
@@ -15,13 +33,10 @@ creds = service_account.Credentials.from_service_account_info(
 auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
-# Set the base URL for the Discovery Engine API
 base_url = "https://discoveryengine.googleapis.com/v1alpha"
 
-# Construct the endpoint URL
 endpoint_url = f"{base_url}/projects/210890376426/locations/global/collections/default_collection/dataStores/lwk-media-search_1714306590615/conversations/-:converse"
 
-# Set the request headers
 headers = {
     "Content-Type": "application/json",
     "Authorization": "Bearer {}".format(creds.token),
@@ -92,7 +107,6 @@ with st.sidebar:
     st.page_link("pages/terms_of_service.py", label="用户服务协议", icon="📄")
     st.page_link("pages/privacy_policy.py", label="隐私政策", icon="🔒")
 
-# Set the request body
 query = st.text_area("请输入您的问题:", "")  # Replace this with your actual query
 body = {
     "query": {"input": query},
@@ -127,7 +141,6 @@ content_dict = {
     }
 }
 
-# Make the POST request to the Discovery Engine API
 with st.form("myform"):
     left_co, cent_co,last_co = st.columns([0.44,0.28,0.28])
     with cent_co:
@@ -138,7 +151,6 @@ with st.form("myform"):
             answer = response.json()["reply"]["reply"]
         
             st.info(response.json()["reply"]["reply"] if response.status_code == 200 else response.text)
-# Check the status code of the response and print the response body
 
     # 检查回答是否包含关键词，并展示对应的图片和链接
     

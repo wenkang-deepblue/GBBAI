@@ -149,7 +149,7 @@ def login():
                 padding: 1rem;
                 background-color: #ffecec;
                 color: #721c24;
-                border: 1px solid #f5c6cb;
+                border: 1px solid #ffecec;
                 border-radius: 0.25rem;
                 margin: 1rem 0;
             }

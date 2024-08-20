@@ -28,7 +28,6 @@ with st.sidebar:
         if st.button("log out"):
             logout()
 
-
 credentials_info = st.secrets["GOOGLE_APPLICATION_CREDENTIALS"]
 
 creds = service_account.Credentials.from_service_account_info(

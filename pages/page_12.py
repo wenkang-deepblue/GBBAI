@@ -15,6 +15,9 @@ from google.oauth2 import service_account
 import google.auth.transport.requests
 from auth import login, callback, logout
 
+# 页面配置
+st.set_page_config(layout="wide", page_title="GBB AI旅游助手")
+
 if "code" in st.query_params:
     callback()
 
@@ -46,9 +49,6 @@ creds.refresh(auth_req)
 vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
 
 APP_ID = "travel_advisor"
-
-# 页面配置
-st.set_page_config(layout="wide", page_title="GBB AI旅游助手")
 
 # 初始化会话状态
 if f'{APP_ID}_messages' not in st.session_state:

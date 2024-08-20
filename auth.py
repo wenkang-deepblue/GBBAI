@@ -140,7 +140,25 @@ def login():
         domain = email.split("@")[-1]
 
         if domain not in ALLOWED_DOMAINS:
-            st.error("您的邮箱域名不在允许访问的列表中。")
+            error_html = """
+            <style>
+            .centered-error {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem;
+                background-color: #ffecec;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+                border-radius: 0.25rem;
+                margin: 1rem 0;
+            }
+            </style>
+            <div class="centered-error">
+                您的邮箱域名不在允许访问的列表中。
+            </div>
+            """
+            st.markdown(error_html, unsafe_allow_html=True)
             del st.session_state.credentials
             return False
 

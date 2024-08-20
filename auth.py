@@ -155,7 +155,7 @@ def login():
             }
             </style>
             <div class="centered-error">
-                您的邮箱域名不在允许访问的列表中。
+                您的邮箱域名不在允许访问的列表中，请使用您的@google.com账号登录。
             </div>
             """
             st.markdown(error_html, unsafe_allow_html=True)

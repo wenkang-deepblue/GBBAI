@@ -77,7 +77,7 @@ with st.sidebar:
     st.subheader('',divider='rainbow')
     st.text("")
     st.page_link("homepage.py", label="主页", icon="🏠")
-    st.page_link("pages/page_1.py", label="文本生成", icon="📖")
+    st.page_link("pages/page_text_generation.py", label="文本生成", icon="📖")
     st.page_link("pages/page_2.py", label="视频理解", icon="🎞️")
     st.page_link("pages/page_3.py", label="文本翻译", icon="🇺🇳")
     st.page_link("pages/page_12.py", label="旅游顾问", icon="✈️")

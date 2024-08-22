@@ -57,7 +57,7 @@ with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
         st.image('https://storage.googleapis.com/ghackathon/image2.gif')
-    left_co, cent_co,last_co = st.columns([0.3,0.5,0.2])
+    left_co, cent_co,last_co = st.columns([0.28,0.5,0.22])
     with cent_co:
         st.title(":blue[GCP Gen]:rainbow[AI]")
     temperature = st.slider("调整模型Temperature", min_value=0.0, max_value=2.0, value=1.5, help=(

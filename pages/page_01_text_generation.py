@@ -41,7 +41,7 @@ creds.refresh(auth_req)
 vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
 
 # Streamlit 应用界面
-left_co, cent_co,last_co = st.columns([1,2,1])
+left_co, cent_co,last_co = st.columns([0.35,0.35,0.30])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
 left_co, cent_co,last_co = st.columns([0.39,0.31,0.3])

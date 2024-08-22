@@ -63,7 +63,7 @@ with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
         st.image('https://storage.googleapis.com/ghackathon/image2.gif')
-    left_co, cent_co,last_co = st.columns([0.29,0.5,0.21])
+    left_co, cent_co,last_co = st.columns([0.3,0.5,0.2])
     with cent_co:
         st.title(":blue[GCP Gen]:rainbow[AI]")
     st.page_link("homepage.py", label="主页", icon="🏠")

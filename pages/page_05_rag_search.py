@@ -46,10 +46,10 @@ headers = {
 }
 
 # streamlit界面
-left_co, cent_co,last_co = st.columns([0.39,0.31,0.30])
+left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.39,0.31,0.3])
+left_co, cent_co,last_co = st.columns([0.4,0.31,0.29])
 with cent_co:
     st.caption(":blue[_企业级RAG搜索引擎_]")
 st.image('https://storage.googleapis.com/ghackathon/page_2_zh.png')

@@ -39,10 +39,10 @@ creds.refresh(auth_req)
 vertexai.init(project="lwk-genai-test", location="us-central1", credentials=creds)
 
 # Streamlit 应用界面
-left_co, cent_co,last_co = st.columns([0.3,0.5,0.2])
+left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.41,0.31,0.28])
+left_co, cent_co,last_co = st.columns([0.4,0.30,0.3])
 with cent_co:
     st.caption(":blue[_企业级翻译平台_]")
 st.image('https://storage.googleapis.com/ghackathon/page_4_zh.png')

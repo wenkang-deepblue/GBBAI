@@ -44,11 +44,11 @@ st.write("# 您好！欢迎使用 :blue[GCP Gen]:rainbow[AI] !")
 
 st.markdown(
     """
-    GCP GenAI项目是利用:blue[Google Cloud Vertex AI]平台搭建的GenAI系统，其目的是演示Vertex AI各个模块可为企业实现的内容生成，媒体理解，RAG检索增强生成以及媒体搜索等功能。该项目所用到的Vertex AI模块包括：:orange[Gemini 1.5 Pro多模态模型，Agent Builder - Vertex AI Search，Imagen，DialogFlow]等等。Google Cloud中国销售及架构师团队愿意全力协助您利用Google强大的AI基础能力，以及GCP全面的AI生态及技术架构，搭建企业级的AI应用，帮助您的企业快速迭代，灵活开发，降低成本，提高效率。
-    
-    
-    
-"""
+    <div style="font-family: 'Google Sans', sans-serif;">
+    GBB AI项目是利用<span style="color: #1A73E8;">Google Cloud Vertex AI</span>平台搭建的GenAI系统，其目的是演示Vertex AI各个模块可为企业实现的内容生成，媒体理解，RAG检索增强生成以及媒体搜索等功能。该项目所用到的Vertex AI模块包括：<span style="color: orange;">Gemini 1.5 Pro多模态模型，Agent Builder - Vertex AI Search，Imagen，DialogFlow</span>等等。Google Cloud中国销售及架构师团队愿意全力协助您利用Google强大的AI基础能力，以及GCP全面的AI生态及技术架构，搭建企业级的AI应用，帮助您的企业快速迭代，灵活开发，降低成本，提高效率。
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 st.markdown(

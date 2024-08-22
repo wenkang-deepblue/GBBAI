@@ -82,10 +82,10 @@ def reset_conversation():
         st.session_state.pop(f'{APP_ID}_chat', None)
         
 # Streamlit 应用界面
-left_co, cent_co,last_co = st.columns([0.44,0.35,0.21])
+left_co, cent_co,last_co = st.columns([0.45,0.35,0.2])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.47,0.4,0.13])
+left_co, cent_co,last_co = st.columns([0.48,0.4,0.12])
 with cent_co:
     st.caption(":blue[_智能专业旅游顾问_]")
 left_co, cent_co,last_co = st.columns([1,2,1])

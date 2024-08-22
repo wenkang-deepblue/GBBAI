@@ -16,7 +16,7 @@ with st.sidebar:
     st.markdown(f"""
         <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; 
                     padding: 10px; border-radius: 0.25rem; text-align: center; margin-bottom: 10px;">
-            <p style="margin-bottom: 0;">欢迎, {st.session_state.user_email}!</p>
+            <p style="margin-bottom: 0;">欢迎!</p>
         </div>
     """, unsafe_allow_html=True)
     left_co, cent_co,last_co = st.columns([0.35,0.33,0.32])
@@ -62,7 +62,7 @@ with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
         st.image('https://storage.googleapis.com/ghackathon/image2.gif')
-    left_co, cent_co,last_co = st.columns([0.36,0.32,0.32])
+    left_co, cent_co,last_co = st.columns([0.3,0.5,0.2])
     with cent_co:
         st.title(":blue[GCP Gen]:rainbow[AI]")
     st.page_link("homepage.py", label="主页", icon="🏠")

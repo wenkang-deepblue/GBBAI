@@ -44,7 +44,7 @@ vertexai.init(project="lwk-genai-test", location="us-central1", credentials=cred
 left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.39,0.31,0.3])
+left_co, cent_co,last_co = st.columns([0.4,0.30,0.3])
 with cent_co:
     st.caption(":blue[_企业级内容生成平台_]")
 st.image('https://storage.googleapis.com/ghackathon/page_0.png')

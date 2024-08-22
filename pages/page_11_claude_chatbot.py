@@ -74,7 +74,7 @@ def reset_conversation():
 left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.45,0.36,0.2])
+left_co, cent_co,last_co = st.columns([0.44,0.36,0.2])
 with cent_co:
     st.caption(":blue[_企业级聊天机器人_]")
 st.image('https://storage.googleapis.com/ghackathon/page_18_zh.png')

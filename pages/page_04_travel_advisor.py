@@ -254,7 +254,7 @@ model = GenerativeModel(
     safety_settings=SAFETY_CONFIGS,
     tools=[
         Tool.from_google_search_retrieval(
-            google_search_retrieval=generative_models.grounding.GoogleSearchRetrieval(disable_attribution=False)
+            google_search_retrieval=generative_models.grounding.GoogleSearchRetrieval()
         )
     ],
     system_instruction=TRAVEL_ADVISOR_INSTRUCTION

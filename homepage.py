@@ -13,6 +13,17 @@ if "code" in st.query_params:
 if not login():
     st.stop()
 
+manual_link = st.secrets["manual_link"]
+
+st.markdown(f"""
+    <div style="background-color: #D2E3FC; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 20px;">
+        <span style="color: #5F6368;">请点击这里获取</span>
+        <a href="{manual_link}" target="_blank" style="color: #4285F4; text-decoration: underline; font-weight: bold; font-family: 'Google Sans', sans-serif;">
+            GCP-GenAI Demo手册
+        </a>
+    </div>
+""", unsafe_allow_html=True)
+
 with st.sidebar:
     st.markdown(f"""
         <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; 

@@ -74,7 +74,7 @@ def login():
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: url('https://storage.googleapis.com/ghackathon/pink-blue.gif');
+        background-image: url('https://storage.googleapis.com/ghackathon/blue-gold.gif');
         background-size: cover;
         opacity: 0;
         transition: opacity 0.3s ease;

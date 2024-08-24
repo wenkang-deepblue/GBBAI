@@ -105,7 +105,7 @@ with st.sidebar:
         st.write(':grey[Powered by] **Vertex AI**')
 
     st.page_link("pages/terms_of_service.py", label="用户服务协议", icon="📄")
-    st.page_link("pages/privacy_policy.py", label="隐私政策", icon="🔒")
+    st.page_link("pages/privacy_policy.py", label="用户隐私政策", icon="🔒")
 
 query = st.text_area("请输入您的问题:", "")  # Replace this with your actual query
 body = {

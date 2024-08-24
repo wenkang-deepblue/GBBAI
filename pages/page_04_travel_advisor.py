@@ -16,7 +16,7 @@ import google.auth.transport.requests
 from auth import login, callback, logout
 
 # 页面配置
-st.set_page_config(layout="wide", page_title="GBB AI旅游助手")
+st.set_page_config(layout="wide", page_title="GCP GenAI旅游助手")
 
 if "code" in st.query_params:
     callback()
@@ -148,7 +148,7 @@ with st.sidebar:
         st.write(':grey[Powered by] **Vertex AI**')
 
     st.page_link("pages/terms_of_service.py", label="用户服务协议", icon="📄")
-    st.page_link("pages/privacy_policy.py", label="隐私政策", icon="🔒")
+    st.page_link("pages/privacy_policy.py", label="用户隐私政策", icon="🔒")
         
 # 自定义CSS样式
 st.markdown("""

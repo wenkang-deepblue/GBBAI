@@ -3,7 +3,7 @@ from auth import login, callback, logout
 
 #this will showed on the top of user's
 st.set_page_config(
-    page_title="GBB AI",
+    page_title="GCP GenAI",
     page_icon="👋",
 )
 

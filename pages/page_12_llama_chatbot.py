@@ -180,7 +180,7 @@ with st.sidebar:
         st.write(':grey[Powered by] **Vertex AI**')
 
     st.page_link("pages/terms_of_service.py", label="用户服务协议", icon="📄")
-    st.page_link("pages/privacy_policy.py", label="隐私政策", icon="🔒")
+    st.page_link("pages/privacy_policy.py", label="用户隐私政策", icon="🔒")
 
 #LLaMA model
 MODEL_ID = 'meta/llama3-405b-instruct-maas'

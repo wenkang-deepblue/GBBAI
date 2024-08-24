@@ -118,6 +118,29 @@ def login():
 </div>
 """
         st.markdown(button_html, unsafe_allow_html=True)
+
+        footer_html = """
+        <style>
+        .footer-links {
+            position: fixed;
+            left: 0;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: underline;
+        }
+        </style>
+        <div class="footer-links">
+            <a href="https://gcp-genai-zh.streamlit.app/terms_of_service" target="_blank">用户服务协议</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://gcp-genai-zh.streamlit.app/privacy_policy" target="_blank">用户隐私政策</a>
+        </div>
+        """
+        st.markdown(footer_html, unsafe_allow_html=True)
+        
         return False
 
     try:

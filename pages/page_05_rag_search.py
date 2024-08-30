@@ -16,7 +16,7 @@ with st.sidebar:
     st.markdown(f"""
         <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; 
                     padding: 10px; border-radius: 0.25rem; text-align: center; margin-bottom: 10px;">
-            <p style="margin-bottom: 0;">欢迎!</p>
+            <p style="margin-bottom: 0;">Welcome!</p>
         </div>
     """, unsafe_allow_html=True)
     left_co, cent_co,last_co = st.columns([0.35,0.33,0.32])
@@ -33,31 +33,31 @@ creds = service_account.Credentials.from_service_account_info(
 auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
-# 设置Discovery Engine API变量
+# Set Discovery Engine API variables
 base_url = "https://discoveryengine.googleapis.com/v1alpha"
 
-# 创建endpoint URL
+# Create endpoint URL
 endpoint_url = f"{base_url}/projects/210890376426/locations/global/collections/default_collection/dataStores/lwk-rag-search-data-store_1713579228500/conversations/-:converse"
 
-# 设置请求报头
+# Set request headers
 headers = {
     "Content-Type": "application/json",
     "Authorization": "Bearer {}".format(creds.token),
 }
 
-# streamlit界面
+# Streamlit interface
 left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
 left_co, cent_co,last_co = st.columns([0.4,0.31,0.29])
 with cent_co:
-    st.caption(":blue[_企业级RAG搜索引擎_]")
+    st.caption(":blue[_Enterprise-ready RAG Search Engine_]")
 st.image('https://storage.googleapis.com/ghackathon/page_2_zh.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
 
-# steramlit界面
+# Streamlit interface
 with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
@@ -65,29 +65,29 @@ with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.28,0.5,0.22])
     with cent_co:
         st.title(":blue[GCP Gen]:rainbow[AI]")
-    st.page_link("homepage.py", label="主页", icon="🏠")
-    st.page_link("pages/page_01_text_generation.py", label="文本生成", icon="📖")
-    st.page_link("pages/page_02_media_understanding.py", label="视频理解", icon="🎞️")
-    st.page_link("pages/page_03_translation.py", label="文本翻译", icon="🇺🇳")
-    st.page_link("pages/page_04_travel_advisor.py", label="旅游顾问", icon="✈️")
-    st.page_link("pages/page_05_rag_search.py", label="RAG搜索", icon="🔍")
-    st.page_link("pages/page_06_media_search.py", label="媒体搜索", icon="🎥")
-    st.page_link("pages/page_07_image_generation.py", label="图片生成", icon="🎨")
-    st.page_link("pages/page_08_chatbot.py", label="聊天机器人", icon="💬")
-    st.page_link("pages/page_09_gaming_servicebot.py", label="游戏客服平台", icon="🤖")
-    st.page_link("pages/page_10_ecommerce_servicebot.py", label="电商客服平台", icon="🤖")
-    st.page_link("pages/page_11_claude_chatbot.py", label="Claude3.5聊天机器人", icon="💬")
-    st.page_link("pages/page_12_llama_chatbot.py", label="Llama3.1聊天机器人", icon="💬")
-    st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP翻译门户", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/gallery", label="GCP控制台 - Gemini", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/gen-app-builder/engines", label="GCP控制台 - App Builder", icon="🌎")
+    st.page_link("homepage.py", label="Home", icon="🏠")
+    st.page_link("pages/page_01_text_generation.py", label="Text Generation", icon="📖")
+    st.page_link("pages/page_02_media_understanding.py", label="Media Understanding", icon="🎞️")
+    st.page_link("pages/page_03_translation.py", label="Text Translation", icon="🇺🇳")
+    st.page_link("pages/page_04_travel_advisor.py", label="Travel Advisor", icon="✈️")
+    st.page_link("pages/page_05_rag_search.py", label="RAG Search", icon="🔍")
+    st.page_link("pages/page_06_media_search.py", label="Media Search", icon="🎥")
+    st.page_link("pages/page_07_image_generation.py", label="Image Generation", icon="🎨")
+    st.page_link("pages/page_08_chatbot.py", label="Chatbot", icon="💬")
+    st.page_link("pages/page_09_gaming_servicebot.py", label="Gaming Servicebot", icon="🤖")
+    st.page_link("pages/page_10_ecommerce_servicebot.py", label="E-commerce Servicebot", icon="🤖")
+    st.page_link("pages/page_11_claude_chatbot.py", label="Claude 3.5 Chatbot", icon="💬")
+    st.page_link("pages/page_12_llama_chatbot.py", label="Llama 3.1 Chatbot", icon="💬")
+    st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP Translation Hub", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/gallery", label="GCP Console - Gemini", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/gen-app-builder/engines", label="GCP Console - App Builder", icon="🌎")
     st.text("")
     st.subheader('', divider='rainbow')
     st.text("")
     st.markdown(
         """
-    ## 关于
-    这是由:blue[Google Cloud Vertex AI]驱动的生成式AI平台以及企业级RAG搜索引擎
+    ## About
+    This is a generative AI platform powered by :blue[Google Cloud Vertex AI] and an enterprise-ready RAG search engine
         """
     )
     st.page_link("https://cloud.google.com/vertex-ai?hl=en", label="Google Cloud Vertex AI", icon="☁️")
@@ -108,11 +108,11 @@ with st.sidebar:
     with cent_co:
         st.write(':grey[Powered by] **Vertex AI**')
 
-    st.page_link("pages/terms_of_service.py", label="用户服务协议", icon="📄")
-    st.page_link("pages/privacy_policy.py", label="用户隐私政策", icon="🔒")
+    st.page_link("pages/terms_of_service.py", label="Terms of Service", icon="📄")
+    st.page_link("pages/privacy_policy.py", label="Privacy Policy", icon="🔒")
 
-# 设置查询提示词
-query = st.text_area("请输入您的问题:", "")  # Replace this with your actual query
+# Set query prompt
+query = st.text_area("Please input your question:", "")  # Replace this with your actual query
 body = {
     "query": {"input": query},
     "summarySpec": {
@@ -123,48 +123,48 @@ body = {
     },
 }
 
-# 设置结果返回结果关键词以展示相应图片
+# Set result keywords to display corresponding images
 content_dict = {
-    "以色列": {
+    "Israel": {
         "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E4%BB%A5%E8%89%B2%E5%88%97.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E4%BB%A5%E8%89%B2%E5%88%97%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%9B%BD%E5%AE%B6%E7%9A%84%E8%AF%9E%E7%94%9F.pdf"
     },
-    "微积分": {
+    "Calculus": {
         "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E5%BE%AE%E7%A7%AF%E5%88%86.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E5%85%AB%E5%8D%A6%E5%BE%AE%E7%A7%AF%E5%88%86.pdf"
     },
-    "量子": {
+    "Quantum": {
         "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E9%87%8F%E5%AD%90%E9%80%9A%E4%BF%A1.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E9%87%8F%E5%AD%90%E9%80%9A%E4%BF%A1.pdf"
     },
-    "考古": {
+    "Archaeology": {
         "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E8%80%83%E5%8F%A4%E7%8E%B0%E5%9C%BA.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E5%9B%B4%E8%A7%82%E8%80%83%E5%8F%A4%E7%8E%B0%E5%9C%BA.pdf"
     },
-    "近视": {
+    "Myopia": {
         "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E8%BF%91%E8%A7%86.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E8%BF%91%E8%A7%86%E6%80%8E%E4%B9%88%E5%8A%9E.pdf"
     },
-    "故事":{
+    "Story":{
         "image": "https://storage.googleapis.com/lwk-rag-search-demo/%E5%86%99%E6%95%85%E4%BA%8B.png",
         "file": "https://storage.googleapis.com/lwk-rag-search-demo/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99%E6%95%85%E4%BA%8B.pdf"
     }
 }
 
-# 向Discovery Engine API发送POST请求
+# Send POST request to Discovery Engine API
 with st.form("myform"):
     left_co, cent_co,last_co = st.columns([0.44,0.28,0.28])
     with cent_co:
-        submitted = st.form_submit_button("提交")
+        submitted = st.form_submit_button("Submit")
     if submitted:
-        with st.spinner('正在处理，不要着急哦，答案正在路上...'):
+        with st.spinner('Processing, please be patient, the answer is on its way...'):
             response = requests.post(endpoint_url, headers=headers, json=body)
             answer = response.json()["reply"]["reply"]
         
             st.info(response.json()["reply"]["reply"] if response.status_code == 200 else response.text)
-# 检查请求响应代码并返回请求结果
+# Check request response code and return request result
 
-    # 检查回答是否包含关键词，并展示对应的图片和链接
+    # Check if the answer contains keywords and display corresponding images and links
     
             for keyword in content_dict:
                 if keyword in answer:
@@ -174,7 +174,7 @@ with st.form("myform"):
                         st.image(content["image"])
                     left_co, cent_co,last_co = st.columns([0.44,0.28,0.28])
                     with cent_co:
-                        st.write(f'[在线阅读]({content["file"]})')         
-                    break  # 只展示第一个匹配的关键词
+                        st.write(f'[Read Online]({content["file"]})')         
+                    break  # Only display the first matching keyword
             else:
-                st.write("未找到匹配关键词")
+                st.write("No matching keywords found")

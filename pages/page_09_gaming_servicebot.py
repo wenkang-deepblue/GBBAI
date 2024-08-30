@@ -52,10 +52,10 @@ def custom_page_link(url, label, icon, new_tab=False):
 left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.4,0.32,0.28])
+left_co, cent_co,last_co = st.columns([0.35,0.37,0.28])
 with cent_co:
     st.caption(":blue[_Enterprise-ready Customer Service Bot Platform_]")
-st.image('https://storage.googleapis.com/ghackathon/page_15_zh.png')
+st.image('https://storage.googleapis.com/ghackathon/page_7.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')

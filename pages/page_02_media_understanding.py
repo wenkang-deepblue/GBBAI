@@ -47,7 +47,7 @@ with cent_co:
 left_co, cent_co,last_co = st.columns([0.3,0.6,0.1])
 with cent_co:
     st.caption(":blue[_Enterprise-ready Content Generation Platform_]")
-st.image('https://storage.googleapis.com/ghackathon/page_1.png')
+st.image('https://storage.googleapis.com/ghackathon/page_2.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')

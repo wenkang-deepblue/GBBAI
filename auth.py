@@ -51,7 +51,7 @@ def login():
         </style>
         """
         st.markdown(background_style, unsafe_allow_html=True)
-        st.markdown("<h1 class='welcome-text'>欢迎访问GCP-GenAI项目</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 class='welcome-text'>Welcome to GCP-GenAI Project</h1>", unsafe_allow_html=True)
         st.text("")
         st.text("")
         st.text("")

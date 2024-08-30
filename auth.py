@@ -9,7 +9,7 @@ import json
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 CLIENT_ID = st.secrets["CLIENT_ID"]
 CLIENT_SECRET = st.secrets["CLIENT_SECRET"]
-REDIRECT_URI = "https://gcp-genai-zh.streamlit.app"
+REDIRECT_URI = "https://gcp-genai-en.streamlit.app"
 
 # List of allowed domains
 ALLOWED_DOMAINS = ["google.com"]

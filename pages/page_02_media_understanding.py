@@ -107,7 +107,7 @@ with st.sidebar:
         return f"gs://{bucket_name}/{destination_blob_name}"
           
     with st.form("mysidebarform"):
-        left_co, cent_co,last_co = st.columns([0.33,0.34,0.33])
+        left_co, cent_co,last_co = st.columns([0.3,0.4,0.3])
         with cent_co:
             submitted = st.form_submit_button("Upload")
         

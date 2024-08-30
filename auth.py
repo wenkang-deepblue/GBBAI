@@ -5,13 +5,13 @@ from googleapiclient.discovery import build
 import os
 import json
 
-# 设置Google OAuth 2.0客户端ID和密钥
+# Set up Google OAuth 2.0 client ID and secret
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 CLIENT_ID = st.secrets["CLIENT_ID"]
 CLIENT_SECRET = st.secrets["CLIENT_SECRET"]
 REDIRECT_URI = "https://gcp-genai-zh.streamlit.app"
 
-# 允许访问的域名列表
+# List of allowed domains
 ALLOWED_DOMAINS = ["google.com"]
 
 flow = Flow.from_client_config(
@@ -51,7 +51,7 @@ def login():
         </style>
         """
         st.markdown(background_style, unsafe_allow_html=True)
-        st.markdown("<h1 class='welcome-text'>欢迎访问GCP-GenAI项目</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 class='welcome-text'>Welcome to GCP-GenAI Project</h1>", unsafe_allow_html=True)
         st.text("")
         st.text("")
         st.text("")
@@ -111,7 +111,7 @@ def login():
                     height: 18px;
                     margin-right: 10px;
                 ">
-                请使用您的 Google 公司账号登录
+                Please login with your Google corp account
             </div>
         </div>
     </a>
@@ -134,9 +134,9 @@ def login():
         }
         </style>
         <div class="footer-links">
-            <a href="https://gcp-genai-zh.streamlit.app/terms_of_service" target="_blank">用户服务协议</a>
+            <a href="https://gcp-genai-zh.streamlit.app/terms_of_service" target="_blank">Terms of Service</a>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="https://gcp-genai-zh.streamlit.app/privacy_policy" target="_blank">用户隐私政策</a>
+            <a href="https://gcp-genai-zh.streamlit.app/privacy_policy" target="_blank">Privacy Policy</a>
         </div>
         """
         st.markdown(footer_html, unsafe_allow_html=True)
@@ -178,7 +178,7 @@ def login():
             }
             </style>
             <div class="centered-error">
-                您的邮箱域名不在允许访问的列表中，请使用您的@google.com账号登录。
+                Your email domain is not in the allowed list. Please login with your @google.com account.
             </div>
             """
             st.markdown(error_html, unsafe_allow_html=True)
@@ -188,7 +188,7 @@ def login():
         st.session_state.user_email = email
         return True
     except Exception as e:
-        st.error(f"验证过程中发生错误: {str(e)}")
+        st.error(f"An error occurred during authentication: {str(e)}")
         if "credentials" in st.session_state:
             del st.session_state.credentials
         return False
@@ -206,7 +206,7 @@ def callback():
         }
         st.experimental_rerun()
     except Exception as e:
-        print(f"验证过程中发生错误: {str(e)}")
+        print(f"An error occurred during authentication: {str(e)}")
 
 def logout():
     if "credentials" in st.session_state:

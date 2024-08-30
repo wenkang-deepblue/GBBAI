@@ -48,6 +48,19 @@ def login():
             text-align: center;
             margin-bottom: 30px;
         }}
+        .english-version-link {{
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }}
+        .english-version-link a {{
+            color: white;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }}
         </style>
         """
         st.markdown(background_style, unsafe_allow_html=True)
@@ -55,6 +68,14 @@ def login():
         st.text("")
         st.text("")
         st.text("")
+
+        english_version_html = """
+        <div class="english-version-link">
+            <a href="https://gcp-genai-en.streamlit.app/" target="_blank">English Version</a>
+        </div>
+        """
+        st.markdown(english_version_html, unsafe_allow_html=True)
+        
         google_logo_url = "https://storage.googleapis.com/ghackathon/GoogleG_FullColor_40px.svg"
     
         button_html = f"""

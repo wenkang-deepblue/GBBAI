@@ -21,7 +21,7 @@ with st.sidebar:
     st.markdown(f"""
         <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; 
                     padding: 10px; border-radius: 0.25rem; text-align: center; margin-bottom: 10px;">
-            <p style="margin-bottom: 0;">欢迎!</p>
+            <p style="margin-bottom: 0;">Welcome!</p>
         </div>
     """, unsafe_allow_html=True)
     left_co, cent_co,last_co = st.columns([0.35,0.33,0.32])
@@ -39,14 +39,14 @@ creds = service_account.Credentials.from_service_account_info(
 auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
-# 初始化客户端
+# Initialize client
 client = AnthropicVertex(region="europe-west1", project_id="lwk-genai-test", credentials=creds)
 
 APP_ID = "claude_chat"
 
 CURSOR_GIF_URL = "https://storage.googleapis.com/ghackathon/%E5%85%89%E6%A0%87-16.gif"
 
-# 初始化会话状态
+# Initialize session state
 if f"{APP_ID}_current_role" not in st.session_state:
     st.session_state[f"{APP_ID}_current_role"] = None
 if f'{APP_ID}_messages' not in st.session_state:
@@ -61,7 +61,7 @@ if f'{APP_ID}_file_uploaded' not in st.session_state:
 def load_gif(gif_url):
     return gif_url
 
-# 加载GIF图片
+# Load GIF image
 thinking_gif = load_gif("https://storage.googleapis.com/ghackathon/typing-dots-40.gif")
 
 def reset_conversation():
@@ -70,19 +70,19 @@ def reset_conversation():
     st.session_state[f'{APP_ID}_file_uploaded'] = False
     st.session_state[f'{APP_ID}_file_key'] += 1
 
-# Streamlit应用界面
+# Streamlit application interface
 left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
 left_co, cent_co,last_co = st.columns([0.42,0.36,0.22])
 with cent_co:
-    st.caption(":blue[_企业级聊天机器人_]")
+    st.caption(":blue[_Enterprise-ready Chatbot_]")
 st.image('https://storage.googleapis.com/ghackathon/page_18_zh.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
 
-#Sidebar界面
+# Sidebar interface
 with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
@@ -91,30 +91,30 @@ with st.sidebar:
     with cent_co:
         st.title(":blue[GCP Gen]:rainbow[AI]")
     
-    generic_chat = "你是一个乐于助人的人类助手，请用用户跟你对话的语言来进行与用户的对话"
-    python_expert = "你是一个python专家，可以帮助用户生成python代码，解释python代码，完善python代码"
+    generic_chat = "You are a helpful human assistant. Please converse with the user in the language they use to talk to you."
+    python_expert = "You are a Python expert who can help users generate Python code, explain Python code, and improve Python code."
     
     st.subheader('', divider='rainbow')
     
     system_instruction_option = ""
         
     system_instruction_option1 = st.radio(
-        "请选择AI的角色：",
-        ("友好的助手", "Python专家", "自定义"),
+        "Please select the AI role:",
+        ("Friendly Assistant", "Python Expert", "Custom"),
         index=None,
     )
     
-    if system_instruction_option1 == "自定义":
-        system_instruction_option2 = st.text_area ("请在此自由定义AI的角色：", "")
-        submitted = st.button("提交")
+    if system_instruction_option1 == "Custom":
+        system_instruction_option2 = st.text_area ("Please define the AI role here:", "")
+        submitted = st.button("Submit")
         if submitted:
             st.session_state[f"{APP_ID}_custom_role_description"] = system_instruction_option2
     
-    if system_instruction_option1 == "友好的助手":
+    if system_instruction_option1 == "Friendly Assistant":
         system_instruction_option = generic_chat
-    elif system_instruction_option1 == "Python专家":
+    elif system_instruction_option1 == "Python Expert":
         system_instruction_option = python_expert
-    elif system_instruction_option1 == "自定义" and f"{APP_ID}_custom_role_description" in st.session_state:
+    elif system_instruction_option1 == "Custom" and f"{APP_ID}_custom_role_description" in st.session_state:
         system_instruction_option = st.session_state[f"{APP_ID}_custom_role_description"]
     
     if system_instruction_option:
@@ -122,41 +122,41 @@ with st.sidebar:
             st.session_state[f"{APP_ID}_current_role"] = system_instruction_option
             st.session_state[f'{APP_ID}_messages'] = []
             st.experimental_rerun()
-        st.write(f"您选择的AI角色描述为：{system_instruction_option}")
+        st.write(f"The AI role description you selected is: {system_instruction_option}")
     else:
-        st.error("请选择或定义AI角色")
+        st.error("Please select or define an AI role")
    
     st.text("")
     
     col1, col2, col3 = st.columns([1,2,1])
     with col2:
-        if st.button("开始新的对话", use_container_width=True):
+        if st.button("Start a new conversation", use_container_width=True):
             reset_conversation()
             st.experimental_rerun()
     
-    st.page_link("homepage.py", label="主页", icon="🏠")
-    st.page_link("pages/page_01_text_generation.py", label="文本生成", icon="📖")
-    st.page_link("pages/page_02_media_understanding.py", label="视频理解", icon="🎞️")
-    st.page_link("pages/page_03_translation.py", label="文本翻译", icon="🇺🇳")
-    st.page_link("pages/page_04_travel_advisor.py", label="旅游顾问", icon="✈️")
-    st.page_link("pages/page_05_rag_search.py", label="RAG搜索", icon="🔍")
-    st.page_link("pages/page_06_media_search.py", label="媒体搜索", icon="🎥")
-    st.page_link("pages/page_07_image_generation.py", label="图片生成", icon="🎨")
-    st.page_link("pages/page_08_chatbot.py", label="聊天机器人", icon="💬")
-    st.page_link("pages/page_09_gaming_servicebot.py", label="游戏客服平台", icon="🤖")
-    st.page_link("pages/page_10_ecommerce_servicebot.py", label="电商客服平台", icon="🤖")
-    st.page_link("pages/page_11_claude_chatbot.py", label="Claude3.5聊天机器人", icon="💬")
-    st.page_link("pages/page_12_llama_chatbot.py", label="Llama3.1聊天机器人", icon="💬")
-    st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP翻译门户", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/gallery", label="GCP控制台 - Gemini", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/gen-app-builder/engines", label="GCP控制台 - App Builder", icon="🌎")
+    st.page_link("homepage.py", label="Home", icon="🏠")
+    st.page_link("pages/page_01_text_generation.py", label="Text Generation", icon="📖")
+    st.page_link("pages/page_02_media_understanding.py", label="Media Understanding", icon="🎞️")
+    st.page_link("pages/page_03_translation.py", label="Text Translation", icon="🇺🇳")
+    st.page_link("pages/page_04_travel_advisor.py", label="Travel Advisor", icon="✈️")
+    st.page_link("pages/page_05_rag_search.py", label="RAG Search", icon="🔍")
+    st.page_link("pages/page_06_media_search.py", label="Media Search", icon="🎥")
+    st.page_link("pages/page_07_image_generation.py", label="Image Generation", icon="🎨")
+    st.page_link("pages/page_08_chatbot.py", label="Chatbot", icon="💬")
+    st.page_link("pages/page_09_gaming_servicebot.py", label="Gaming Servicebot", icon="🤖")
+    st.page_link("pages/page_10_ecommerce_servicebot.py", label="E-commerce Servicebot", icon="🤖")
+    st.page_link("pages/page_11_claude_chatbot.py", label="Claude 3.5 Chatbot", icon="💬")
+    st.page_link("pages/page_12_llama_chatbot.py", label="Llama 3.1 Chatbot", icon="💬")
+    st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP Translation Hub", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/gallery", label="GCP Console - Gemini", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/gen-app-builder/engines", label="GCP Console - App Builder", icon="🌎")
     st.text("")
     st.subheader('', divider='rainbow')
     st.text("")
     st.markdown(
         """
-    ## 关于
-    这是由:blue[Google Cloud Vertex AI]驱动的生成式AI平台以及企业级RAG搜索引擎
+    ## About
+    This is a generative AI platform powered by :blue[Google Cloud Vertex AI] and an enterprise-ready RAG search engine
         """
     )
     st.page_link("https://cloud.google.com/vertex-ai?hl=en", label="Google Cloud Vertex AI", icon="☁️")
@@ -177,18 +177,18 @@ with st.sidebar:
     with cent_co:
         st.write(':grey[Powered by] **Vertex AI**')
 
-    st.page_link("pages/terms_of_service.py", label="用户服务协议", icon="📄")
-    st.page_link("pages/privacy_policy.py", label="用户隐私政策", icon="🔒")
+    st.page_link("pages/terms_of_service.py", label="Terms of Service", icon="📄")
+    st.page_link("pages/privacy_policy.py", label="Privacy Policy", icon="🔒")
         
-# 处理上传的文件
+# Handle uploaded file
 def process_uploaded_file(uploaded_file):
     if uploaded_file is not None:
         file_id = str(uuid.uuid4())
-        # 读取文件内容
+        # Read file content
         file_content = uploaded_file.getvalue()
-        # 获取MIME类型
+        # Get MIME type
         mime_type = uploaded_file.type
-        # 将文件内容编码为base64
+        # Encode file content to base64
         encoded_content = base64.b64encode(file_content).decode('utf-8')
         
         st.session_state[f'{APP_ID}_current_file'] = {
@@ -232,13 +232,13 @@ def generate_text(messages, file_data=None):
             for text in stream.text_stream:
                 yield text
     except Exception as e:
-        st.error(f"生成文本时发生错误: {str(e)}")
+        st.error(f"An error occurred while generating text: {str(e)}")
         yield None
 
-# 创建一个容器放置对话内容
+# Create a container for conversation content
 chat_container = st.container()
 
-# 在容器中显示聊天历史和新消息
+# Display chat history and new messages in the container
 with chat_container:
     for msg in st.session_state[f'{APP_ID}_messages']:
         st.chat_message(msg["role"]).write(msg["content"])
@@ -249,20 +249,20 @@ with chat_container:
 
 thinking_placeholder = st.empty()
 
-# 定义图片预览函数
+# Define image preview function
 def image_preview():
     if st.session_state[f'{APP_ID}_current_file']:
         file_data = st.session_state[f'{APP_ID}_current_file']
         if 'image' in file_data['mime_type']:
             col1, col2, col3 = st.columns([1,2,1])
             with col2:
-                st.image(file_data['raw_data'], caption='当前上传的图片', use_column_width=True)
+                st.image(file_data['raw_data'], caption='Currently uploaded image', use_column_width=True)
         else:
-            st.warning("上传的文件类型不支持预览。")
+            st.warning("The uploaded file type does not support preview.")
             
-uploaded_file = st.file_uploader("上传图片文件", type=['jpg', 'jpeg', 'png'], key=f"file_uploader_{st.session_state[f'{APP_ID}_file_key']}")
+uploaded_file = st.file_uploader("Upload image file", type=['jpg', 'jpeg', 'png'], key=f"file_uploader_{st.session_state[f'{APP_ID}_file_key']}")
 
-# 创建一个用于预览的占位符
+# Create a placeholder for preview
 preview_placeholder = st.empty()
 
 if uploaded_file is not None:
@@ -270,14 +270,14 @@ if uploaded_file is not None:
     with preview_placeholder:
         image_preview()
         
-user_input = st.chat_input("输入您的消息")
+user_input = st.chat_input("Input your message")
 
 if user_input:
     if not st.session_state[f"{APP_ID}_current_role"]:
-        st.error("👈请定义一种角色：在菜单中选择或者自定义")
+        st.error("👈 Please define a role: select from the menu or customize")
         st.stop()
     else:
-        # 清除文件预览
+        # Clear file preview
         preview_placeholder.empty()
         
         user_message = {"role": "user", "content": user_input}
@@ -286,7 +286,7 @@ if user_input:
         
         st.session_state[f'{APP_ID}_messages'].append(user_message)
         
-        # 更新聊天历史
+        # Update chat history
         with chat_container:
             st.chat_message("user").write(user_input)
             if st.session_state[f'{APP_ID}_file_uploaded']:
@@ -298,12 +298,12 @@ if user_input:
                     
         thinking_placeholder.markdown(
             f'<div style="display: flex; justify-content: center;">'
-            f'<img src="{thinking_gif}" alt="思考中" style="width:30px;">'
+            f'<img src="{thinking_gif}" alt="Thinking" style="width:30px;">'
             f'</div>',
             unsafe_allow_html=True
         )
         
-        # 处理API调用和响应
+        # Handle API call and response
         with chat_container:
             with st.chat_message("assistant"):
                 response_placeholder = st.empty()
@@ -323,5 +323,5 @@ if user_input:
         if st.session_state[f'{APP_ID}_file_uploaded']:
             clear_file()
 
-# 使页面滚动到底部
+# Scroll to the bottom of the page
 st.markdown('<script>window.scrollTo(0, document.body.scrollHeight);</script>', unsafe_allow_html=True)

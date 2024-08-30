@@ -73,7 +73,7 @@ thinking_gif = load_gif("https://storage.googleapis.com/ghackathon/typing-dots-4
 left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.46,0.39,0.25])
+left_co, cent_co,last_co = st.columns([0.47,0.39,0.24])
 with cent_co:
     st.caption(":blue[_Llama3.1 Chatbot_]")
 st.image('https://storage.googleapis.com/ghackathon/page_18_zh.png')

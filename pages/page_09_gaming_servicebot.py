@@ -77,7 +77,7 @@ with st.sidebar:
     st.page_link("pages/page_07_image_generation.py", label="Image Generation", icon="🎨")
     st.page_link("pages/page_08_chatbot.py", label="Chatbot", icon="💬")
     st.page_link("pages/page_09_gaming_servicebot.py", label="Gaming Servicebot", icon="🤖")
-    st.page_link("pages/page_10_ecommerce_servicebot.py", label="E-commerce Servicebot", icon="🤖")
+    custom_page_link("https://gcp-genai-en.streamlit.app/page_10_ecommerce_servicebot", label="E-commerce Servicebot", icon="🤖")
     st.page_link("pages/page_11_claude_chatbot.py", label="Claude 3.5 Chatbot", icon="💬")
     st.page_link("pages/page_12_llama_chatbot.py", label="Llama 3.1 Chatbot", icon="💬")
     st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP Translation Hub", icon="🌎")

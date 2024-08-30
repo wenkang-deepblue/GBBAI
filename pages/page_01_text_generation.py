@@ -168,7 +168,7 @@ if uploaded_files:
             
 
 with st.form("myform"):
-    left_co, cent_co,last_co = st.columns([0.42,0.29,0.29])
+    left_co, cent_co,last_co = st.columns([0.37,0.34,0.29])
     with cent_co:
         submitted = st.form_submit_button("Generate Text")
     if uploaded_files and submitted and not prompt:

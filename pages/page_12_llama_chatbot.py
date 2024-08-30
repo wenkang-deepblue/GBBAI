@@ -23,7 +23,7 @@ with st.sidebar:
     st.markdown(f"""
         <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; 
                     padding: 10px; border-radius: 0.25rem; text-align: center; margin-bottom: 10px;">
-            <p style="margin-bottom: 0;">欢迎!</p>
+            <p style="margin-bottom: 0;">Welcome!</p>
         </div>
     """, unsafe_allow_html=True)
     left_co, cent_co,last_co = st.columns([0.35,0.33,0.32])
@@ -37,19 +37,19 @@ creds = service_account.Credentials.from_service_account_info(
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
 )
 
-# 刷新凭证
+# Refresh credentials
 auth_req = google.auth.transport.requests.Request()
 creds.refresh(auth_req)
 
-# 初始化Vertex AI
+# Initialize Vertex AI
 project_id = "lwk-genai-test"
 location = "us-central1"
 vertexai.init(project=project_id, location=location, credentials=creds)
 
-# 设置OpenAI客户端URL
+# Set OpenAI client URL
 url = f"https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{project_id}/locations/{location}/endpoints/openapi"
 
-# 创建OpenAI客户端
+# Create OpenAI client
 client = openai.OpenAI(
     base_url=url,         
     api_key=creds.token,
@@ -64,24 +64,24 @@ def load_gif(gif_url):
         data_url = base64.b64encode(contents).decode("utf-8")
         return f"data:image/gif;base64,{data_url}"
     else:
-        st.error(f"无法加载GIF图像：HTTP状态码 {response.status_code}")
+        st.error(f"Unable to load GIF image: HTTP status code {response.status_code}")
         return ""
 
 thinking_gif = load_gif("https://storage.googleapis.com/ghackathon/typing-dots-40.gif")
 
-# Streamlit应用界面
+# Streamlit application interface
 left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
 left_co, cent_co,last_co = st.columns([0.44,0.37,0.29])
 with cent_co:
-    st.caption(":blue[_Llama3.1聊天机器人_]")
+    st.caption(":blue[_Llama3.1 Chatbot_]")
 st.image('https://storage.googleapis.com/ghackathon/page_18_zh.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')
 
-#Sidebar界面
+# Sidebar interface
 with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.34,0.33,0.33])
     with cent_co:
@@ -89,76 +89,76 @@ with st.sidebar:
     left_co, cent_co,last_co = st.columns([0.28,0.5,0.22])
     with cent_co:
         st.title(":blue[GCP Gen]:rainbow[AI]")
-    temperature = st.slider("调整模型Temperature", min_value=0.0, max_value=2.0, value=1.0, help=(
+    temperature = st.slider("Adjust Model Temperature", min_value=0.0, max_value=2.0, value=1.0, help=(
         """
-        Temperature用于响应生成期间的采样，这发生在应用 topP 和 topK 时。Temperature控制了token选择中的随机程度。对于需要较少开放式或创造性响应的提示，较低的temperature是好的，而较高的temperature可以导致更多样化或创造性的结果。Temperature为 0 意味着始终选择最高概率的token。在这种情况下，给定提示的响应大多是确定的，但仍有可能出现少量变化。
+        Temperature is used for sampling during response generation, which occurs when applying topP and topK. Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that require fewer open-ended or creative responses, while higher temperatures can lead to more diverse or creative results. A temperature of 0 means always selecting the highest probability token. In this case, the response for a given prompt is mostly deterministic, but some variation may still occur.
         
-        如果模型返回的响应过于通用、太短或模型给出回退响应，请尝试提高temperature。
+        If the model returns responses that are too generic, too short, or the model gives fallback responses, try increasing the temperature.
         """
     ))
-    top_p = st.slider ("调整模型Top_p", min_value=0.00, max_value=1.00, value=0.95, help=(
+    top_p = st.slider ("Adjust Model Top_p", min_value=0.00, max_value=1.00, value=0.95, help=(
         """
-        Top-P 改变了模型选择输出tokens的方式。Tokens按照从最可能（见top-K）到最不可能的顺序进行选择，直到它们的概率之和等于top-P值。例如，如果token A、B和C的概率分别为0.3、0.2和0.1，top-P值为0.5，那么模型将使用温度从A或B中选择下一个token，并排除C作为候选。
+        Top-P changes how the model selects output tokens. Tokens are chosen from most likely to least likely until the sum of their probabilities equals the top-P value. For example, if tokens A, B, and C have probabilities .3, .2, and .1, and the top-P value is .5, the model will select the next token from A or B using temperature and exclude C as a candidate.
 
-        指定较低的值会得到较少的随机响应，指定较高的值会得到更多的随机响应。
+        Specifying a lower value will result in less random responses, while specifying a higher value will result in more random responses.
         """
     ))
     
-    generic_chat = "你是一个乐于助人的人类助手，请用用户跟你对话的语言来进行与用户的对话"
-    python_expert = "你是一个python专家，可以帮助用户生成python代码，解释python代码，完善python代码"
+    generic_chat = "You are a helpful human assistant. Please converse with the user in the language they use to talk to you."
+    python_expert = "You are a Python expert who can help users generate Python code, explain Python code, and improve Python code."
     
     st.subheader('', divider='rainbow')
     
     system_instruction_option = ""
         
     system_instruction_option1 = st.radio(
-        "请选择AI的角色：",
-        ("友好的助手", "Python专家", "自定义"),
+        "Please select the AI's role:",
+        ("Friendly Assistant", "Python Expert", "Custom"),
         index=None,
     )
     
-    if system_instruction_option1 == "自定义":
-        system_instruction_option2 = st.text_area ("请在此自由定义AI的角色：", "")
-        submitted = st.button("提交")
+    if system_instruction_option1 == "Custom":
+        system_instruction_option2 = st.text_area ("Please define the AI's role here:", "")
+        submitted = st.button("Submit")
         if submitted:
             st.session_state.custom_role_description = system_instruction_option2
     
-    if system_instruction_option1 == "友好的助手":
+    if system_instruction_option1 == "Friendly Assistant":
         system_instruction_option = generic_chat
-    elif system_instruction_option1 == "Python专家":
+    elif system_instruction_option1 == "Python Expert":
         system_instruction_option = python_expert
-    elif system_instruction_option1 == "自定义" and "custom_role_description" in st.session_state:
+    elif system_instruction_option1 == "Custom" and "custom_role_description" in st.session_state:
         system_instruction_option = st.session_state.custom_role_description
     
     if system_instruction_option:
-        st.write(f"您选择的AI角色描述为：{system_instruction_option}")
+        st.write(f"The AI role description you selected is: {system_instruction_option}")
     else:
-        st.error("请选择或定义AI角色")
+        st.error("Please select or define an AI role")
    
     st.text("")
-    st.page_link("homepage.py", label="主页", icon="🏠")
-    st.page_link("pages/page_01_text_generation.py", label="文本生成", icon="📖")
-    st.page_link("pages/page_02_media_understanding.py", label="视频理解", icon="🎞️")
-    st.page_link("pages/page_03_translation.py", label="文本翻译", icon="🇺🇳")
-    st.page_link("pages/page_04_travel_advisor.py", label="旅游顾问", icon="✈️")
-    st.page_link("pages/page_05_rag_search.py", label="RAG搜索", icon="🔍")
-    st.page_link("pages/page_06_media_search.py", label="媒体搜索", icon="🎥")
-    st.page_link("pages/page_07_image_generation.py", label="图片生成", icon="🎨")
-    st.page_link("pages/page_08_chatbot.py", label="聊天机器人", icon="💬")
-    st.page_link("pages/page_09_gaming_servicebot.py", label="游戏客服平台", icon="🤖")
-    st.page_link("pages/page_10_ecommerce_servicebot.py", label="电商客服平台", icon="🤖")
-    st.page_link("pages/page_11_claude_chatbot.py", label="Claude3.5聊天机器人", icon="💬")
-    st.page_link("pages/page_12_llama_chatbot.py", label="Llama3.1聊天机器人", icon="💬")
-    st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP翻译门户", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/gallery", label="GCP控制台 - Gemini", icon="🌎")
-    st.page_link("https://pantheon.corp.google.com/gen-app-builder/engines", label="GCP控制台 - App Builder", icon="🌎")
+    st.page_link("homepage.py", label="Home", icon="🏠")
+    st.page_link("pages/page_01_text_generation.py", label="Text Generation", icon="📖")
+    st.page_link("pages/page_02_media_understanding.py", label="Media Understanding", icon="🎞️")
+    st.page_link("pages/page_03_translation.py", label="Text Translation", icon="🇺🇳")
+    st.page_link("pages/page_04_travel_advisor.py", label="Travel Advisor", icon="✈️")
+    st.page_link("pages/page_05_rag_search.py", label="RAG Search", icon="🔍")
+    st.page_link("pages/page_06_media_search.py", label="Media Search", icon="🎥")
+    st.page_link("pages/page_07_image_generation.py", label="Image Generation", icon="🎨")
+    st.page_link("pages/page_08_chatbot.py", label="Chatbot", icon="💬")
+    st.page_link("pages/page_09_gaming_servicebot.py", label="Gaming Servicebot", icon="🤖")
+    st.page_link("pages/page_10_ecommerce_servicebot.py", label="E-commerce Servicebot", icon="🤖")
+    st.page_link("pages/page_11_claude_chatbot.py", label="Claude 3.5 Chatbot", icon="💬")
+    st.page_link("pages/page_12_llama_chatbot.py", label="Llama 3.1 Chatbot", icon="💬")
+    st.page_link("https://pantheon.corp.google.com/translation/hub", label="GCP Translation Hub", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/vertex-ai/generative/multimodal/gallery", label="GCP Console - Gemini", icon="🌎")
+    st.page_link("https://pantheon.corp.google.com/gen-app-builder/engines", label="GCP Console - App Builder", icon="🌎")
     st.text("")
     st.subheader('', divider='rainbow')
     st.text("")
     st.markdown(
         """
-    ## 关于
-    这是由:blue[Google Cloud Vertex AI]驱动的生成式AI平台以及企业级RAG搜索引擎
+    ## About
+    This is a generative AI platform powered by :blue[Google Cloud Vertex AI] and an enterprise-ready RAG search engine
         """
     )
     st.page_link("https://cloud.google.com/vertex-ai?hl=en", label="Google Cloud Vertex AI", icon="☁️")
@@ -179,10 +179,10 @@ with st.sidebar:
     with cent_co:
         st.write(':grey[Powered by] **Vertex AI**')
 
-    st.page_link("pages/terms_of_service.py", label="用户服务协议", icon="📄")
-    st.page_link("pages/privacy_policy.py", label="用户隐私政策", icon="🔒")
+    st.page_link("pages/terms_of_service.py", label="Terms of Service", icon="📄")
+    st.page_link("pages/privacy_policy.py", label="Privacy Policy", icon="🔒")
 
-#LLaMA model
+# LLaMA model
 MODEL_ID = 'meta/llama3-405b-instruct-maas'
 
 def generate_text(messages):    
@@ -194,7 +194,7 @@ def generate_text(messages):
         max_tokens=4000,
     )
     
-    # 获取消息内容
+    # Get message content
     content = response.choices[0].message.content
     
     content = re.sub(r'^assistant\s*|\s*assistant$', '', content, flags=re.IGNORECASE)
@@ -205,15 +205,15 @@ def generate_text(messages):
     
     content = content.replace('\\n', '\n')
     
-    content = re.sub(r'\n{2,}', '\n\n', content)  # 将多个连续换行减少为两个
-    content = re.sub(r'(?<!\n)\n(?!\n)', ' ', content)  # 将单个换行替换为空格
+    content = re.sub(r'\n{2,}', '\n\n', content)
+    content = re.sub(r'(?<!\n)\n(?!\n)', ' ', content)
     
     for i, block in enumerate(code_blocks):
         content = content.replace(f'___CODE_BLOCK_{i}___', block)
     
     return content.strip()
     
-# 初始化Streamlit应用
+# Initialize Streamlit application
 if f"{APP_ID}_messages" not in st.session_state:
     st.session_state[f"{APP_ID}_messages"] = []
 if f"{APP_ID}_current_role" not in st.session_state:
@@ -228,7 +228,7 @@ for msg in st.session_state.get(f"{APP_ID}_messages", [])[1:]:
 
 if prompt := st.chat_input():
     if not st.session_state.get(f"{APP_ID}_current_role"):
-        st.error("👈请定义一种角色：在菜单中选择或者自定义")
+        st.error("👈 Please define a role: select from the menu or customize")
         st.stop()
     else:
         st.session_state[f"{APP_ID}_messages"].append({"role": "user", "content": prompt})

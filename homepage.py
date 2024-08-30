@@ -51,6 +51,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.text("")
+
 st.markdown(
     """
     **👈 Please click on the left to start experiencing!**

@@ -49,10 +49,10 @@ headers = {
 left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.4,0.31,0.29])
+left_co, cent_co,last_co = st.columns([0.37,0.34,0.29])
 with cent_co:
     st.caption(":blue[_Enterprise-ready RAG Search Engine_]")
-st.image('https://storage.googleapis.com/ghackathon/page_2_zh.png')
+st.image('https://storage.googleapis.com/ghackathon/page_4.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')

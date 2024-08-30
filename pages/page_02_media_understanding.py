@@ -44,10 +44,10 @@ model = GenerativeModel("gemini-1.5-flash-001")
 left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.4,0.30,0.3])
+left_co, cent_co,last_co = st.columns([0.3,0.6,0.1])
 with cent_co:
     st.caption(":blue[_Enterprise-ready Content Generation Platform_]")
-st.image('https://storage.googleapis.com/ghackathon/page_1_en.png')
+st.image('https://storage.googleapis.com/ghackathon/page_1.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')

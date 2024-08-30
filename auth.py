@@ -134,9 +134,9 @@ def login():
         }
         </style>
         <div class="footer-links">
-            <a href="https://gcp-genai-zh.streamlit.app/terms_of_service" target="_blank">Terms of Service</a>
+            <a href="https://gcp-genai-en.streamlit.app/terms_of_service" target="_blank">Terms of Service</a>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="https://gcp-genai-zh.streamlit.app/privacy_policy" target="_blank">Privacy Policy</a>
+            <a href="https://gcp-genai-en.streamlit.app/privacy_policy" target="_blank">Privacy Policy</a>
         </div>
         """
         st.markdown(footer_html, unsafe_allow_html=True)

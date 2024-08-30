@@ -42,10 +42,10 @@ vertexai.init(project="lwk-genai-test", location="us-central1", credentials=cred
 left_co, cent_co,last_co = st.columns([0.35,0.35,0.3])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.42,0.30,0.28])
+left_co, cent_co,last_co = st.columns([0.3,0.6,0.1])
 with cent_co:
     st.caption(":blue[_Enterprise-ready Translation Platform_]")
-st.image('https://storage.googleapis.com/ghackathon/page_4_zh.png')
+st.image('https://storage.googleapis.com/ghackathon/page_3.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')

@@ -85,7 +85,7 @@ def reset_conversation():
 left_co, cent_co,last_co = st.columns([0.45,0.35,0.2])
 with cent_co:
     st.title(":blue[GCP Gen]:rainbow[AI]")
-left_co, cent_co,last_co = st.columns([0.44,0.43,0.13])
+left_co, cent_co,last_co = st.columns([0.45,0.42,0.13])
 with cent_co:
     st.caption(":blue[_Intelligent Professional Travel Advisor_]")
 left_co, cent_co,last_co = st.columns([1,2,1])

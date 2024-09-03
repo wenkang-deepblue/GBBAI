@@ -43,7 +43,7 @@ st.markdown(
     """
     <h1 style="font-family: 'Google Sans', sans-serif; font-weight: medium;">
         Hello! Welcome to 
-        <span style="color: #4285F4;">GCP Gen</span><span style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AI</span>!
+        <span style="color: #4285F4;">GCP Gen</span><span style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red); -webkit-background-clip: text; color: transparent;">AI</span>!
     </h1>
     """,
     unsafe_allow_html=True

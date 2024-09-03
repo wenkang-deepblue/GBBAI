@@ -36,13 +36,16 @@ def login():
         background_image_url = "https://storage.googleapis.com/ghackathon/nebula_1_2.jpg"
         background_style = f"""
         <style>
+        @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap');
         .stApp {{
             background-image: url('{background_image_url}');
             background-size: cover;
             background-repeat: center center;
             background-attachment: fixed;
         }}
-        .welcome-text {{
+        .welcome-text {
+            font-family: 'Google Sans', sans-serif;
+            font-weight: 500;  /* This is equivalent to medium */
             color: white;
             font-size: 48px;
             text-align: center;

@@ -55,7 +55,7 @@ def login():
             font-family: 'Google Sans', sans-serif;
             font-weight: 500;
             color: white;
-            font-size: 48px;
+            font-size: 42px;
             display: inline-block;
         }}
         @media (max-width: 768px) {{

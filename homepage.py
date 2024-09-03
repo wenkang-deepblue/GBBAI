@@ -39,15 +39,7 @@ with st.sidebar:
 st.image("https://storage.googleapis.com/ghackathon/galaxy%20banner%20with%20logo.png")
 
 
-st.markdown(
-    """
-    <h1 style="font-family: 'Google Sans', sans-serif; font-weight: medium;">
-        Hello! Welcome to 
-        <span style="color: #4285F4;">GCP Gen</span><span style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red); -webkit-background-clip: text; color: transparent;">AI</span>!
-    </h1>
-    """,
-    unsafe_allow_html=True
-)
+st.write(# Hello! Welcome to :blue[GCP Gen]:rainbow[AI])
 
 st.markdown(
     """

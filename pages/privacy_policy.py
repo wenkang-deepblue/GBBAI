@@ -54,7 +54,7 @@ with st.sidebar:
     st.page_link("pages/terms_of_service.py", label="Terms of Service", icon="📄")
     st.page_link("pages/privacy_policy.py", label="Privacy Policy", icon="🔒")
 
-left_co, cent_co,last_co = st.columns([0.23,0.7,0.07])
+left_co, cent_co,last_co = st.columns([0.15,0.75,0.1])
 with cent_co:
     st.title("GCP GenAI Privacy Policy")
 

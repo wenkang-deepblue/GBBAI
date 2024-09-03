@@ -52,13 +52,13 @@ def login():
             position: fixed;
             top: 10px;
             right: 10px;
-            z-index: 1000;
+            z-index: 900;
         }}
         .english-version-link a {{
             font-family: 'Google Sans', sans-serif;
             color: white;
             text-decoration: none;
-            font-size: 70px;
+            font-size: 30px;
         }}
         </style>
         """

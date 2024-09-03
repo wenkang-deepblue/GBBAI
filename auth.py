@@ -58,7 +58,12 @@ def login():
             font-family: 'Google Sans', sans-serif;
             color: white;
             text-decoration: none;
-            font-size: 30px;
+            font-size: 70px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: underline;
+            text-decoration-color: white;
         }}
         </style>
         """

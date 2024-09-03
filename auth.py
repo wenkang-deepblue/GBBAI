@@ -43,21 +43,15 @@ def login():
             background-repeat: center center;
             background-attachment: fixed;
         }}
-        .welcome-text-container {{
-            position: relative;
-            width: 100%;
-            height: 100px;  /* Adjust this value as needed */
-            margin-bottom: 30px;
-        }}
         .welcome-text {{
             font-family: 'Google Sans', sans-serif;
             font-weight: 500;
             color: white;
             font-size: 48px;
-            white-space: nowrap;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 30px;
         }}
         @media (max-width: 768px) {{
             .welcome-text {{
@@ -67,11 +61,7 @@ def login():
         </style>
         """
         st.markdown(background_style, unsafe_allow_html=True)
-        st.markdown("""
-        <div class="welcome-text-container">
-            <h1 class="welcome-text">Welcome to GCP-GenAI Project</h1>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown("<h1 class='welcome-text'>Welcome to GCP-GenAI Project</h1>", unsafe_allow_html=True)
         st.text("")
         st.text("")
         st.text("")

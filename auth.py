@@ -43,9 +43,9 @@ def login():
             background-repeat: center center;
             background-attachment: fixed;
         }}
-        .welcome-text {
+        .welcome-text {{
             font-family: 'Google Sans', sans-serif;
-            font-weight: 500;  /* This is equivalent to medium */
+            font-weight: 500;
             color: white;
             font-size: 48px;
             text-align: center;

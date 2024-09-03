@@ -50,9 +50,9 @@ def login():
         }}
         .english-version-link {{
             position: fixed;
-            top: 10px;
+            top: 100px;
             right: 10px;
-            z-index: 2000;
+            z-index: 1000;
         }}
         .english-version-link a {{
             font-family: 'Google Sans', sans-serif;

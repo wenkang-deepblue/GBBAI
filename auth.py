@@ -55,11 +55,10 @@ def login():
             z-index: 1000;
         }}
         .english-version-link a {{
+            font-family: 'Google Sans', sans-serif;
             color: white;
             text-decoration: none;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 5px 10px;
-            border-radius: 5px;
+            font-size: 70px;
         }}
         </style>
         """

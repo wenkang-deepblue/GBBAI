@@ -43,18 +43,29 @@ def login():
             background-repeat: center center;
             background-attachment: fixed;
         }}
+        .welcome-text-container {{
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 30px;
+        }}
         .welcome-text {{
             font-family: 'Google Sans', sans-serif;
             font-weight: 500;  /* This is equivalent to medium */
             color: white;
             font-size: 48px;
             text-align: center;
-            margin-bottom: 30px;
+            white-space: nowrap;  /* Prevent text from wrapping */
+            display: inline-block;  /* Allow the text to expand beyond its container */
+            padding: 0 20px;  /* Add some padding on the sides */
         }}
         </style>
         """
         st.markdown(background_style, unsafe_allow_html=True)
-        st.markdown("<h1 class='welcome-text'>Welcome to GCP-GenAI Project</h1>", unsafe_allow_html=True)
+        st.markdown("""
+        <div class="welcome-text-container">
+            <h1 class="welcome-text">Welcome to GCP-GenAI Project</h1>
+        </div>
+        """, unsafe_allow_html=True)
         st.text("")
         st.text("")
         st.text("")

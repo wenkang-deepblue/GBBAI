@@ -52,7 +52,7 @@ def login():
             position: fixed;
             top: 10px;
             right: 10px;
-            z-index: 900;
+            z-index: 2000;
         }}
         .english-version-link a {{
             font-family: 'Google Sans', sans-serif;

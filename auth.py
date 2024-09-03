@@ -45,21 +45,21 @@ def login():
         }}
         .welcome-text-container {{
             width: 100%;
-            text-align: center;
+            display: flex;
+            justify-content: center;
             margin-bottom: 30px;
         }}
         .welcome-text {{
             font-family: 'Google Sans', sans-serif;
             font-weight: 500;
             color: white;
-            font-size: calc(24px + 2vw);  /* Responsive font size */
-            display: inline-block;
+            font-size: 48px;  /* Fixed font size */
             white-space: nowrap;
             padding: 0 20px;
         }}
         @media (max-width: 768px) {{
             .welcome-text {{
-                font-size: calc(20px + 2vw);  /* Slightly smaller on mobile */
+                font-size: 36px;  /* Slightly smaller on mobile */
             }}
         }}
         </style>

@@ -50,7 +50,7 @@ def login():
         }}
         .english-version-link {{
             position: fixed;
-            top: 130px;
+            top: 150px;
             right: 10px;
             z-index: 1000;
         }}

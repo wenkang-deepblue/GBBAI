@@ -77,7 +77,7 @@ with cent_co:
 left_co, cent_co,last_co = st.columns([0.42,0.43,0.15])
 with cent_co:
     st.caption(":blue[_Claude 3.5 Chatbot_]")
-st.image('https://storage.googleapis.com/ghackathon/page_18_zh.png')
+st.image('https://storage.googleapis.com/ghackathon/page_18_en.png')
 left_co, cent_co,last_co = st.columns([0.24,0.51,0.25])
 with cent_co:
     st.subheader('', divider='rainbow')

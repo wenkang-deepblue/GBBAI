@@ -39,7 +39,7 @@ with st.sidebar:
 st.image("https://storage.googleapis.com/ghackathon/galaxy%20banner%20with%20logo.png")
 
 
-st.write("# Hello! Welcome to :blue[GCP Gen]:rainbow[AI]!")
+st.write("# Hi, there! Welcome to :blue[GCP Gen]:rainbow[AI]!")
 
 st.markdown(
     """

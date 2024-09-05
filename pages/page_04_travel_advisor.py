@@ -90,7 +90,7 @@ with cent_co:
     st.caption(":blue[_Intelligent Professional Travel Advisor_]")
 left_co, cent_co,last_co = st.columns([1,2,1])
 with cent_co:
-    st.image('https://storage.googleapis.com/ghackathon/travel_advisor.png')
+    st.image('https://storage.googleapis.com/ghackathon/travel_advisor_en.png')
 left_co, cent_co,last_co = st.columns([0.01,0.98,0.01])
 with cent_co:
     st.subheader('', divider='rainbow')

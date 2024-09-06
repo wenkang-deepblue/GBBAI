@@ -99,8 +99,8 @@ with st.sidebar:
     st.markdown(
         """
     ## About
-    This is a generative AI platform powered by Google Cloud Vertex AI and an enterprise-ready RAG search engine
-    """
+    This is a generative AI platform and enterprise-ready RAG search engine powered by :blue[Google Cloud Vertex AI]
+        """
     )
     st.page_link("https://cloud.google.com/vertex-ai?hl=en", label="Google Cloud Vertex AI", icon="☁️")
     left_co, cent_co,last_co = st.columns([0.41,0.31,0.28])

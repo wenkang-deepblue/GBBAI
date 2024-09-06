@@ -225,7 +225,7 @@ end_json_tag
 Please ensure the JSON format is correct and includes all necessary information.
 9. If the user doesn't have specific dates, please use Google Search to search for specific, detailed weather conditions for the most recent week and the cheapest real flight information. If the user has specific dates, please use Google Search to search for specific, detailed weather conditions and the cheapest real flight information based on the user's dates:
 Example: Weather conditions: July 1, Sunny, 25-30°C, July 2, Heavy rain, 26-29°C
-Example: Flight information: July 1 CZ322 Guangzhou -- Los Angeles, 2500, July 2 CZ323 Los Angeles -- Guangzhou, 3000
+Example: Flight information: July 1 CZ322 Guangzhou -- Los Angeles, $1000, July 2 CZ323 Los Angeles -- Guangzhou, $1200
 10. When displaying weather conditions in json_tag, please use emoji expressions instead of words, for example:
     Sunny: ☀️
     Rain: 🌧️

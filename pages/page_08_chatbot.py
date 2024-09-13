@@ -252,7 +252,8 @@ def generate_text(prompt, chat, messages):
     response = chat.send_message(
         message_parts,
         generation_config=generation_config,
-        safety_settings=safety_settings
+        safety_settings=safety_settings,
+        stream=True
     )
     return response
 

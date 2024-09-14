@@ -6,6 +6,7 @@ import google.auth.transport.requests
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part, Tool
 import vertexai.preview.generative_models as generative_models
+from vertexai.preview.generative_models import grounding
 import io
 import uuid
 import streamlit.components.v1 as components
@@ -59,6 +60,12 @@ if 'need_api_call' not in st.session_state:
 if 'uploaded_files' not in st.session_state:
     st.session_state.uploaded_files = []
 
+tools = [
+    Tool.from_google_search_retrieval(
+        google_search_retrieval=grounding.GoogleSearchRetrieval()
+    ),
+]
+
 def reset_conversation():
     st.session_state.messages = []
     st.session_state.current_file = None
@@ -105,7 +112,7 @@ with st.sidebar:
         """
     ))
     
-    generic_chat = "你是一个乐于助人的人类助手，请用用户跟你对话的语言来进行与用户的对话"
+    generic_chat = "你是一个乐于助人的人类助手，请用用户跟你对话的语言来进行与用户的对话。如果用户询问关于目前或当前的信息，你需要随时使用Google Search来获取最新的信息,并提供Google Search的搜索链接给用户"
     python_expert = "你是一个python专家，可以帮助用户生成python代码，解释python代码，完善python代码"
     
     st.subheader('', divider='rainbow')
@@ -280,6 +287,7 @@ if system_instruction_option and (system_instruction_option != st.session_state.
     st.session_state.messages = []
     st.session_state.model = GenerativeModel(
         "gemini-1.5-pro",
+        tools=tools,
         system_instruction=system_instruction_option
     )
     st.session_state.chat = st.session_state.model.start_chat()
